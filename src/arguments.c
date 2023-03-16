@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 22:17:25 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:49:54 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 static int	ft_check_number(char *argument);
 static int	ft_str_isdigit(char *str);
 static int	ft_islimit(char *s);
+static int	ft_check_duplicates(t_list *list);
 
 int	ft_parse_arguments(t_stack *stack, int argc, char **argv)
 {
-	int	i;
+	int			i;
 
 	i = 1;
 	while (i < argc)
@@ -31,6 +32,19 @@ int	ft_parse_arguments(t_stack *stack, int argc, char **argv)
 		ft_lstadd_back(&stack->numbers, ft_lstnew(ft_atoi(argv[i])));
 		i++;
 	}
+	if (ft_check_duplicates(stack->numbers) == 0)
+		return (0);
+	return (1);
+}
+
+static int	ft_check_duplicates(t_list *list)
+{
+	t_list	*l;
+	t_list	*l_temp;
+
+	// check prev(s)
+	// check next(s)
+	return (0);
 	return (1);
 }
 
