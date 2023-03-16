@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:16:18 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 15:17:17 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/16 16:05:17 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ t_stack	*ft_new_stack(char *name)
 	if (stack == NULL)
 		return (NULL);
 	stack->name = name;
+	stack->numbers = NULL;
 	return (stack);
 }
