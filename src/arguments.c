@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 23:08:58 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:13:57 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,9 +103,11 @@ static int	ft_islimit(char *s)
 		return (0);
 	if (*s != '+' && *s != '-' && len > max)
 		return (0);
-	if (*s == '-' && ft_strncmp(s, ft_itoa(INT_MIN), min) > 0)
+	if (*s == '-' && len == min \
+		&& ft_strncmp(s, ft_itoa(INT_MIN), min) > 0)
 		return (0);
-	if (*s == '+' && ft_strncmp(s + 1, ft_itoa(INT_MAX), max) > 0)
+	if (*s == '+' && len == max + 1 \
+		&& ft_strncmp(s + 1, ft_itoa(INT_MAX), max) > 0)
 		return (0);
 	if (*s != '+' && *s != '-' && len == max \
 		&& ft_strncmp(s, ft_itoa(INT_MAX), max) > 0)
