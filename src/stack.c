@@ -1,39 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:04:10 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 15:38:59 by mpuig-ma         ###   ########.fr       */
+/*   Created: 2023/03/16 15:16:18 by mpuig-ma          #+#    #+#             */
+/*   Updated: 2023/03/16 15:17:17 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_push(t_stack *stack);
-
-// (push a)
-// Take the first element at the top of b and put it at the top of a.
-// Do nothing if b is empty.
-int	ft_pa(t_stack *s)
+t_stack	*ft_new_stack(char *name)
 {
-	ft_push(s);
-	return (0);
-}
+	t_stack	*stack;
 
-// (push  b)
-// Take the first element at the top of a and put it at the top of b.
-// Do nothing if a is empty.
-int	ft_pb(t_stack *s)
-{
-	ft_push(s);
-	return (0);
-}
-
-static int	ft_push(t_stack *stack)
-{
-	(void) stack;
-	return (0);
+	stack = ft_calloc(1, sizeof(t_stack));
+	if (stack == NULL)
+		return (NULL);
+	stack->name = name;
+	return (stack);
 }

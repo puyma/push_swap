@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 13:04:10 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 15:38:59 by mpuig-ma         ###   ########.fr       */
+/*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
+/*   Updated: 2023/03/16 15:40:18 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_push(t_stack *stack);
-
-// (push a)
-// Take the first element at the top of b and put it at the top of a.
-// Do nothing if b is empty.
-int	ft_pa(t_stack *s)
+int	main(int argc, char **argv)
 {
-	ft_push(s);
-	return (0);
-}
+	t_stack	*a;
+	t_stack	*b;
 
-// (push  b)
-// Take the first element at the top of a and put it at the top of b.
-// Do nothing if a is empty.
-int	ft_pb(t_stack *s)
-{
-	ft_push(s);
-	return (0);
-}
-
-static int	ft_push(t_stack *stack)
-{
-	(void) stack;
+	if (argc < 2)
+		return (0);
+	else
+		(void) argv;
+	a = ft_new_stack("a");
+	b = ft_new_stack("b");
+	if (a)
+		free(a);
+	if (b)
+		free(b);
 	return (0);
 }
