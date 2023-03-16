@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/15 15:39:33 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/16 13:09:30 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,14 @@ OS			:=	$(shell uname)
 NOSTYLE		:=	\033[0m
 STYLE		:=	\033[0;32m
 
-SRC_FILES	:=	main.c
+SRC_FILES	:=	main.c push.c rotate.c swap.c
 SRC_FILES	:=	$(addpreffix $(SRC_DIR), $(SRC_FILES))
 #OBJ_FILES	=	$()
 #DEP_FILES	=	$()
 
 .PHONY: clean fclean re all #debug
 
-$(NAME): #$(LIBFT) $(OBJ_FILES) $(DEP_FILES) src/$(NAME).h
+$(NAME): $(LIBFT) #$(OBJ_FILES) $(DEP_FILES) src/$(NAME).h
 	$(CC) $(INC) $(CFLAGS) $(LFLAGS) -O3 $(SRC_FILES) -o $(basename $@)
 	@echo "Builtt $(STYLE)$(basename $@)$(NOSTYLE)"
 

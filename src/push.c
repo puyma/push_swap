@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 13:13:22 by mpuig-ma         ###   ########.fr       */
+/*   Created: 2023/03/16 13:04:10 by mpuig-ma          #+#    #+#             */
+/*   Updated: 2023/03/16 13:17:26 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h> /* read */
-#include <sys/uio.h> /* read */
-#include <unistd.h> /* read, write */
-#include <stdlib.h> /* malloc, free */
-#include "libft.h" /* ft_printf, ... */
+#include "so_long.h"
 
-#ifndef PUSH_SWAP
+// (push a)
+// Take the first element at the top of b and put it at the top of a.
+// Do nothing if b is empty.
 
-typedef struct s_stack
+int	ft_pa(t_stack *a, t_stack *b)
 {
-	int			something;
-}				t_stack;
+	return (0);
+}
 
-#endif /* push_swap.h */
+// (push  b)
+// Take the first element at the top of a and put it at the top of b.
+// Do nothing if a is empty.
+
+int	ft_pb(t_stack *a, t_stack *b)
+{
+	return (0);
+}
