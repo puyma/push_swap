@@ -6,37 +6,28 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 17:25:39 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:21:30 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	ft_isnumber(char *str);
+//static int	ft_isnumber(char *str);
 
-int	*ft_parse_arguments(int argc, char **argv)
+int	ft_parse_arguments(t_stack *stack, int argc, char **argv)
 {
-	int			*numbers;
-	long int	temp;
-	int			i;
+	int	i;
 
-	numbers = ft_calloc(argc + 1, sizeof(int));
-	if (numbers == NULL)
-		exit (88);
 	i = 1;
 	while (i < argc)
 	{
-		if (ft_isnumber(argv[i]) == 0)
-			return (NULL);
-		temp = ft_atoi(argv[i]);
-		if (ft_strlen(argv[i]) > (size_t) ft_count_digits(INT_MAX, 10))
-			ft_printf("exit\n");
-		numbers[i - 1] = (int) temp;
+		ft_lstadd_back(&stack->numbers, ft_lstnew(ft_atoi(argv[i])));
 		i++;
 	}
-	return (numbers);
+	return (0);
 }
 
+/*
 static int	ft_isnumber(char *str)
 {
 	char	*s;
@@ -54,3 +45,4 @@ static int	ft_isnumber(char *str)
 	}
 	return (1);
 }
+*/
