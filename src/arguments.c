@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 22:03:46 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:17:25 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,47 +65,24 @@ static int	ft_str_isdigit(char *str)
 	return (1);
 }
 
-#include <stdio.h>
-
 static int	ft_islimit(char *s)
 {
 	const size_t	max = ft_count_digits(INT_MAX, 10);
 	const size_t	min = ft_count_digits(INT_MIN, 10) + 1;
 	size_t			len;
 
-	ft_printf("max: %d(%d), %d(%d)\n", INT_MAX, max, INT_MIN, min);
 	len = ft_strlen(s);
-	printf("s(len): %s(%lu)\n", s, len);
 	if (*s == '-' && len > min)
-	{
-		ft_printf("num has more characters than INT_MIN");
 		return (0);
-	}
 	if (*s == '+' && len > (max + 1))
-	{
-		ft_printf("num has more characters (+) than INT_MAX\n");
 		return (0);
-	}
 	if (*s != '+' && *s != '-' && len > max)
-	{
-		ft_printf("num has more characters than INT_MAX\n");
 		return (0);
-	}
 	if (*s == '-' && ft_strncmp(s, ft_itoa(INT_MIN), min) > 0)
-	{
-		ft_printf("num is smaller than INT_MIN\n");
 		return (0);
-	}
 	if (*s == '+' && ft_strncmp(s + 1, ft_itoa(INT_MAX), max) > 0)
-	{
-		ft_printf("num is bigger (+) than INT_MAX\n");
 		return (0);
-	}
-	if (*s != '+' && *s != '-' && ft_strncmp(s, ft_itoa(INT_MAX), max) > 0)
-	{
-		ft_printf("num is bigger than INT_MAX\n");
+	if (*s != '+' && *s != '-' && len == max && ft_strncmp(s, ft_itoa(INT_MAX), max) > 0)
 		return (0);
-	}
-	// check with strncmp if str is bigger than INT_MAX or INT_MIN
 	return (1);
 }
