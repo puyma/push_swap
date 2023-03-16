@@ -6,22 +6,18 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/16 16:09:37 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/16 18:48:37 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 AUTHOR		?=	mpuig-ma
 BUILD_DIR	:=	build
 SRC_DIR		:=	src
-LIBFT_DIR	:=	$(SRC_DIR)/libft
-
-LIBFT		:=	$(LIBFT_DIR)/libft.a
 NAME		:=	push_swap
 
 CC			:=	gcc
 CFLAGS		:=	-Wall -Werror -Wextra -O3
 CCFLAGS		+=	-MMD
-LFLAGS		:=	-L$(LIBFT_DIR) -lft
 DEBUG		:=	-g -fsanitize='address,undefined' -Og
 #CFLAGS		+=	$(DEBUG)
 INC			:=	-I$(LIBFT_DIR)/src -I$(SRC_DIR)
@@ -39,20 +35,16 @@ DEP_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .d, $(notdir $(basename $(SRC
 
 .PHONY: clean fclean re all #debug
 
-$(NAME): $(LIBFT) $(OBJ_FILES) $(DEP_FILES) src/$(NAME).h
-	$(CC) $(INC) $(CFLAGS) $(LFLAGS) -O3 $(OBJ_FILES) -o $(basename $@)
+$(NAME): $(OBJ_FILES) $(DEP_FILES) src/$(NAME).h
+	$(CC) $(INC) $(CFLAGS) -O3 $(OBJ_FILES) -o $(basename $@)
 	@echo "Built $(STYLE)$(basename $@)$(NOSTYLE)"
-
-$(LIBFT):
-	make -C $(dir $@)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
 	$(CC) $(INC) $(CFLAGS) $(CCFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(BUILD_DIR)/ $(LIBFT)
-	make fclean -C $(LIBFT_DIR)
+	$(RM) $(BUILD_DIR)/
 
 fclean: clean
 	$(RM) $(NAME)*
