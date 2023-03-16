@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/16 19:17:08 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/16 22:04:48 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	$(RM) $(BUILD_DIR)/
+	make fclean -C $(LIBFT_DIR)
 
 fclean: clean
 	$(RM) $(NAME)*
