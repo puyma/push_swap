@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 22:49:54 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:08:58 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int	ft_check_duplicates(t_list *list);
 
 int	ft_parse_arguments(t_stack *stack, int argc, char **argv)
 {
-	int			i;
+	int		i;
+	t_list	*list;
 
 	i = 1;
 	while (i < argc)
@@ -32,19 +33,29 @@ int	ft_parse_arguments(t_stack *stack, int argc, char **argv)
 		ft_lstadd_back(&stack->numbers, ft_lstnew(ft_atoi(argv[i])));
 		i++;
 	}
-	if (ft_check_duplicates(stack->numbers) == 0)
-		return (0);
+	list = stack->numbers;
+	while (list != NULL)
+	{
+		if (ft_check_duplicates(list) == 0)
+			return (0);
+		list = list->next;
+	}
 	return (1);
 }
 
 static int	ft_check_duplicates(t_list *list)
 {
+	int		content;
 	t_list	*l;
-	t_list	*l_temp;
 
-	// check prev(s)
-	// check next(s)
-	return (0);
+	content = list->content;
+	l = list->next;
+	while (l != NULL)
+	{
+		if (content == l->content)
+			return (0);
+		l = l->next;
+	}
 	return (1);
 }
 
@@ -96,7 +107,8 @@ static int	ft_islimit(char *s)
 		return (0);
 	if (*s == '+' && ft_strncmp(s + 1, ft_itoa(INT_MAX), max) > 0)
 		return (0);
-	if (*s != '+' && *s != '-' && len == max && ft_strncmp(s, ft_itoa(INT_MAX), max) > 0)
+	if (*s != '+' && *s != '-' && len == max \
+		&& ft_strncmp(s, ft_itoa(INT_MAX), max) > 0)
 		return (0);
 	return (1);
 }
