@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 16:48:37 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:06:25 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <sys/uio.h> /* read */
 # include <unistd.h> /* read, write */
 # include <stdlib.h> /* malloc, free, exit */
+# include <limits.h>
 # include "libft.h" /* ft_printf, ... */
 
 # define FD		1
