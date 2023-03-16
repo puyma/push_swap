@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/16 15:48:50 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/16 16:09:37 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OS			:=	$(shell uname)
 NOSTYLE		:=	\033[0m
 STYLE		:=	\033[0;32m
 
-SRC_FILES	:=	src/main.c src/push.c src/reverse_rotate.c \
+SRC_FILES	:=	src/arguments.c src/main.c src/push.c src/reverse_rotate.c \
 				src/rotate.c src/stack.c src/swap.c
 OBJ_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(notdir $(basename $(SRC_FILES)))))
 DEP_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .d, $(notdir $(basename $(SRC_FILES)))))
