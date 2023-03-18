@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 17:46:55 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:00:42 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int		ft_sb(t_stack *s);
 int		ft_ss(t_stack *a, t_stack *b);
 
 // push
-int		ft_pa(t_stack *from, t_stack *to);
-int		ft_pb(t_stack *from, t_stack *to);
+int		ft_pa(t_stack *a, t_stack *b);
+int		ft_pb(t_stack *a, t_stack *b);
 
 // rotate
 int		ft_ra(t_stack *s);
