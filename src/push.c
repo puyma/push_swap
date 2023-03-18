@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:04:10 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 15:06:52 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:10:02 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	ft_pb(t_stack *from, t_stack *to)
 
 static int	ft_push(t_stack *from, t_stack *to)
 {
+	if (from->numbers == NULL)
+		return (0);
 	from->numbers = from->numbers->next;
 	ft_lstadd_front(&to->numbers, from->numbers->prev);
 	from->numbers->prev = NULL;
