@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 15:16:57 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:18:12 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (0);
-	a = ft_new_stack("a");
-	b = ft_new_stack("b");
+	a = ft_new_stack();
+	b = ft_new_stack();
+	if (a == NULL || b == NULL)
+		return (0);
 	if (ft_parse_arguments(a, argc, argv) == 0)
 		ft_exit(0);
 	ft_print_stack(a, 'A');
-	ft_print_stack(b, 'B');
-	ft_pa(a, b);
-	ft_print_stack_rev(a, 'A');
-	ft_print_stack_rev(b, 'B');
+	ft_rra(a);
+	ft_print_stack(a, 'A');
 	return (0);
+	(void) ft_print_stack_rev;
 }
 
 static void	ft_print_stack(t_stack *stack, int c)
