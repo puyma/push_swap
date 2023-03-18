@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:53:32 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 15:03:47 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:46:40 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,15 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	last = ft_lstlast(*lst);
 	if (last == NULL)
+	{
 		*lst = new;
+		new->prev = NULL;
+		new->next = NULL;
+	}
 	else
 	{
 		last->next = new;
 		new->prev = last;
+		new->next = NULL;
 	}
 }
