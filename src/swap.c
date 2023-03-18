@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:02:47 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 23:27:43 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:15:49 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ int	ft_ss(t_stack *a, t_stack *b)
 
 static int	ft_swap(t_stack *stack)
 {
-	t_list	*l;
-	t_list	*temp;
-	
+	t_list	*first;
+	t_list	*second;
+
 	ft_printf("s%s\n", stack->name);
-	l = stack->numbers;
-	temp = l->next;
-	l->next = l;
-	l = temp;
+	first = stack->numbers;
+	second = stack->numbers->next;
+	if (second->next != NULL)
+		second->next->prev = first;
+	first->next = second->next;
+	second->next = first;
+	first->prev = second;
+	second->prev = NULL;
+	stack->numbers = second;
 	return (0);
 }
