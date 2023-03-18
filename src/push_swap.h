@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 14:35:45 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:31:51 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ typedef struct s_list
 
 typedef struct s_stack
 {
-	char			*name;
 	t_list			*numbers;
 }					t_stack;
 
-t_stack	*ft_new_stack(char *name);
+t_stack	*ft_new_stack(void);
 int		ft_parse_arguments(t_stack *stack, int argc, char **argv);
 
 // swap
