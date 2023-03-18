@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:02:47 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 14:15:49 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:38:14 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	ft_swap(t_stack *stack);
 // Do nothing if there is only one or no elements.
 int	ft_sa(t_stack *a)
 {
+	write(1, "sa\n", 3);
 	ft_swap(a);
 	return (0);
 }
@@ -28,6 +29,7 @@ int	ft_sa(t_stack *a)
 // Do nothing if there is only one or no elements.
 int	ft_sb(t_stack *b)
 {
+	write(1, "sb\n", 3);
 	ft_swap(b);
 	return (0);
 }
@@ -35,6 +37,7 @@ int	ft_sb(t_stack *b)
 // sa and sb at the same time.
 int	ft_ss(t_stack *a, t_stack *b)
 {
+	write(1, "ss\n", 3);
 	ft_swap(a);
 	ft_swap(b);
 	return (0);
@@ -45,7 +48,6 @@ static int	ft_swap(t_stack *stack)
 	t_list	*first;
 	t_list	*second;
 
-	ft_printf("s%s\n", stack->name);
 	first = stack->numbers;
 	second = stack->numbers->next;
 	if (second->next != NULL)
