@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:53:32 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 15:46:40 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/18 17:55:42 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 	t_list	*first;
 
 	first = *lst;
+	if (*lst != NULL)
+		first->prev = new;
 	new->prev = NULL;
 	new->next = first;
 	*lst = new;
