@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 18:28:22 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:19:02 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,34 @@ typedef struct s_stack
 	t_list			*numbers;
 }					t_stack;
 
-t_stack	*ft_new_stack(void);
-int		ft_parse_arguments(t_stack *stack, int argc, char **argv);
-int		ft_do_logic(t_stack *a, t_stack *b);
+typedef struct s_data
+{
+	t_stack			*a;
+	t_stack			*b;
+}					t_data;
+
+int		ft_init_data(t_data *data);
+int		ft_parse_arguments(t_data *data, int argc, char **argv);
+int		ft_do_logic(t_data *data);
 
 // swap
-int		ft_sa(t_stack *s);
-int		ft_sb(t_stack *s);
-int		ft_ss(t_stack *a, t_stack *b);
+int		ft_sa(t_data *data);
+int		ft_sb(t_data *data);
+int		ft_ss(t_data *data);
 
 // push
-int		ft_pa(t_stack *a, t_stack *b);
-int		ft_pb(t_stack *a, t_stack *b);
+int		ft_pa(t_data *data);
+int		ft_pb(t_data *data);
 
 // rotate
-int		ft_ra(t_stack *s);
-int		ft_rb(t_stack *s);
-int		ft_rr(t_stack *a, t_stack *b);
+int		ft_ra(t_data *data);
+int		ft_rb(t_data *data);
+int		ft_rr(t_data *data);
 
 // reverse rotate
-int		ft_rra(t_stack *s);
-int		ft_rrb(t_stack *s);
-int		ft_rrr(t_stack *a, t_stack *b);
+int		ft_rra(t_data *data);
+int		ft_rrb(t_data *data);
+int		ft_rrr(t_data *data);
 
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);

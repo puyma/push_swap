@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:02:47 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 18:32:12 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:23:13 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@ static int	ft_swap(t_stack *stack);
 // (swap a)
 // Swap the first 2 elements at the top of stack a.
 // Do nothing if there is only one or no elements.
-int	ft_sa(t_stack *a)
+int	ft_sa(t_data *data)
 {
 	write(1, "sa\n", 3);
-	ft_swap(a);
+	ft_swap(data->a);
 	return (0);
 }
 
 // (swap b)
 // Swap the first 2 elements at the top of stack b.
 // Do nothing if there is only one or no elements.
-int	ft_sb(t_stack *b)
+int	ft_sb(t_data *data)
 {
 	write(1, "sb\n", 3);
-	ft_swap(b);
+	ft_swap(data->b);
 	return (0);
 }
 
 // sa and sb at the same time.
-int	ft_ss(t_stack *a, t_stack *b)
+int	ft_ss(t_data *data)
 {
 	write(1, "ss\n", 3);
-	ft_swap(a);
-	ft_swap(b);
+	ft_swap(data->a);
+	ft_swap(data->b);
 	return (0);
 }
 

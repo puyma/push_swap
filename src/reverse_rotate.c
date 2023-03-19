@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:21:51 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 17:18:04 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:22:35 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@ int static	ft_reverse_rotate(t_stack *stack);
 // (reverse rotate a)
 // Shift down all elements of stack a by 1.
 // The last element becomes the first one.
-int	ft_rra(t_stack *a)
+int	ft_rra(t_data *data)
 {
 	write(1, "rra\n", 4);
-	ft_reverse_rotate(a);
+	ft_reverse_rotate(data->a);
 	return (0);
 }
 
 // (reverse rotate b)
 // Shift down all elements of stack b by 1.
 // The last element becomes the first one.
-int	ft_rrb(t_stack *b)
+int	ft_rrb(t_data *data)
 {
 	write(1, "rrb\n", 4);
-	ft_reverse_rotate(b);
+	ft_reverse_rotate(data->b);
 	return (0);
 }
 
 // rra and rrb at the same time.
-int	ft_rrr(t_stack *a, t_stack *b)
+int	ft_rrr(t_data *data)
 {
 	write(1, "rrr\n", 4);
-	ft_rra(a);
-	ft_rrb(b);
+	ft_rra(data);
+	ft_rrb(data);
 	return (0);
 }
 

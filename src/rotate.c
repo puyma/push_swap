@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:05:59 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 18:33:27 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:22:48 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,29 @@ static int	ft_rotate(t_stack *stack);
 // ra (rotate a)
 // Shift up all elements of stack a by 1.
 // The first element becomes the last one.
-int	ft_ra(t_stack *a)
+int	ft_ra(t_data *data)
 {
 	write(1, "ra\n", 3);
-	ft_rotate(a);
+	ft_rotate(data->a);
 	return (0);
 }
 
 // rb (rotate b)
 // Shift up all elements of stack b by 1.
 // The first element becomes the last one.
-int	ft_rb(t_stack *b)
+int	ft_rb(t_data *data)
 {
 	write(1, "rb\n", 3);
-	ft_rotate(b);
+	ft_rotate(data->b);
 	return (0);
 }
 
 // ra and rb at the same time.
-int	ft_rr(t_stack *a, t_stack *b)
+int	ft_rr(t_data *data)
 {
 	write(1, "rr\n", 3);
-	ft_ra(a);
-	ft_rb(b);
+	ft_ra(data);
+	ft_rb(data);
 	return (0);
 }
 

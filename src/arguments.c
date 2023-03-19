@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/16 23:15:50 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 18:20:10 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_str_isdigit(char *str);
 static int	ft_islimit(char *s);
 static int	ft_check_duplicates(t_list *list);
 
-int	ft_parse_arguments(t_stack *stack, int argc, char **argv)
+int	ft_parse_arguments(t_data *data, int argc, char **argv)
 {
 	int		i;
 	t_list	*list;
@@ -30,10 +30,10 @@ int	ft_parse_arguments(t_stack *stack, int argc, char **argv)
 			return (0);
 		if (ft_islimit(argv[i]) == 0)
 			return (0);
-		ft_lstadd_back(&stack->numbers, ft_lstnew(ft_atoi(argv[i])));
+		ft_lstadd_back(&data->a->numbers, ft_lstnew(ft_atoi(argv[i])));
 		i++;
 	}
-	list = stack->numbers;
+	list = data->a->numbers;
 	while (list != NULL)
 	{
 		if (ft_check_duplicates(list) == 0)
