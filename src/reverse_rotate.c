@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:21:51 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 18:22:35 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:08:42 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	ft_rra(t_data *data)
 {
 	write(1, "rra\n", 4);
 	ft_reverse_rotate(data->a);
+	if (LOG > 0)
+		ft_print_stacks(data, DIRECTION);
 	return (0);
 }
 
@@ -31,6 +33,8 @@ int	ft_rrb(t_data *data)
 {
 	write(1, "rrb\n", 4);
 	ft_reverse_rotate(data->b);
+	if (LOG > 0)
+		ft_print_stacks(data, DIRECTION);
 	return (0);
 }
 
