@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:17:10 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 18:29:54 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 21:16:11 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ t_data	*ft_init_data(void)
 	data->b = ft_calloc(1, sizeof(t_stack));
 	if (data->a == NULL || data->b == NULL)
 		return (NULL);
+	data->size = 0;
+	data->n_moves = 0;
 	return (data);
 }
