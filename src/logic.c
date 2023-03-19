@@ -6,29 +6,45 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 21:02:38 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 21:33:02 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void	ft_case_two(t_data *data);
 // find smallest and move to b
 static void	ft_case_three(t_data *data);
 static void	ft_case_five(t_data *data);
 static void	ft_pb_smallest(t_data *data);
 static int	ft_lst_position(t_list *l, t_list *node);
+static int	ft_issorted(t_data *data);
 
 int	ft_do_logic(t_data *data)
 {
 	if (data->size == 1)
 		return (0);
+	else if (data->size == 2)
+		ft_case_two(data);
 	else if (data->size == 3)
 		ft_case_three(data);
-	else if (data->size == 5)
+	else if (data->size == 4 || data->size == 5)
 		ft_case_five(data);
-	else
-		ft_printf("size: %d\n", data->size);
 	return (0);
+}
+
+static int	ft_issorted(t_data *data)
+{
+	t_list	*l;
+
+	l = data->a->numbers;
+	while (l != NULL && l->next != NULL)
+	{
+		l = l->next;
+		if (l->prev->content > l->content)
+			return (0);
+	}
+	return (1);
 }
 
 static void	ft_pb_smallest(t_data *data)
@@ -58,11 +74,23 @@ static void	ft_pb_smallest(t_data *data)
 
 static void	ft_case_five(t_data *data)
 {
-	ft_pb_smallest(data);
-	ft_pb_smallest(data);
-	ft_case_three(data);
-	ft_pa(data);
-	ft_pa(data);
+	if (ft_issorted(data) == 0)
+	{
+		while (ft_lstsize(data->a->numbers) != 3)
+			ft_pb_smallest(data);
+		ft_case_three(data);
+		while (data->b->numbers != NULL)
+			ft_pa(data);
+	}
+}
+
+static void	ft_case_two(t_data *data)
+{
+	t_list	*l;
+
+	l = data->a->numbers;
+	if (l->content > l->next->content)
+		ft_ra(data);
 }
 
 static int	ft_lst_position(t_list *list, t_list *node)
