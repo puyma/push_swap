@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:04:10 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 19:08:20 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 21:19:38 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	ft_push(t_stack *from, t_stack *to);
 int	ft_pa(t_data *data)
 {
 	write(1, "pa\n", 3);
+	data->n_moves++;
 	ft_push(data->b, data->a);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
@@ -32,6 +33,7 @@ int	ft_pa(t_data *data)
 int	ft_pb(t_data *data)
 {
 	write(1, "pb\n", 3);
+	data->n_moves++;
 	ft_push(data->a, data->b);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);

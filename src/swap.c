@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:02:47 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 19:07:59 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/19 21:19:37 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	ft_swap(t_stack *stack);
 int	ft_sa(t_data *data)
 {
 	write(1, "sa\n", 3);
+	data->n_moves++;
 	ft_swap(data->a);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
@@ -32,6 +33,7 @@ int	ft_sa(t_data *data)
 int	ft_sb(t_data *data)
 {
 	write(1, "sb\n", 3);
+	data->n_moves++;
 	ft_swap(data->b);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
