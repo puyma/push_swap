@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:17:10 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 21:16:11 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:53:21 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ t_data	*ft_init_data(void)
 		return (NULL);
 	data->size = 0;
 	data->n_moves = 0;
+	data->chunk_size = 0;
 	return (data);
 }
