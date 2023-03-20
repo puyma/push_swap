@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 17:19:12 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:57:16 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_do_logic(t_data *data)
 		ft_case_three(data);
 	else if (data->size == 4 || data->size == 5)
 		ft_case_five(data);
-	else if (data->size <= 100)
+	else
 		ft_do_chunk_method(data);
 	return (0);
 }
@@ -53,7 +53,10 @@ static void	ft_do_chunk_method(t_data *data)
 	int	chunk_size;
 	int	chunk;
 
-	chunk_size = 20;
+	if (data->size <= 100)
+		chunk_size = 20;
+	else
+		chunk_size = 44;
 	chunk = chunk_size;
 	while (data->a->numbers != NULL)
 	{
