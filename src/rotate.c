@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:05:59 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 11:52:49 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:05:01 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ static int	ft_rotate(t_stack *stack);
 // The first element becomes the last one.
 int	ft_ra(t_data *data)
 {
+	if (data->a->numbers == NULL || ft_lstsize(data->a->numbers) == 1)
+		return (0);
 	write(1, "ra\n", 3);
-	data->n_moves++;
-	ft_rotate(data->a);
+	data->n_moves += ft_rotate(data->a);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
-	return (0);
+	return (1);
 }
 
 // rb (rotate b)
@@ -32,12 +33,13 @@ int	ft_ra(t_data *data)
 // The first element becomes the last one.
 int	ft_rb(t_data *data)
 {
+	if (data->b->numbers == NULL || ft_lstsize(data->b->numbers) == 1)
+		return (0);
 	write(1, "rb\n", 3);
-	data->n_moves++;
-	ft_rotate(data->b);
+	data->n_moves += ft_rotate(data->b);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
-	return (0);
+	return (1);
 }
 
 // ra and rb at the same time.
@@ -46,7 +48,7 @@ int	ft_rr(t_data *data)
 	write(1, "rr\n", 3);
 	ft_ra(data);
 	ft_rb(data);
-	return (0);
+	return (1);
 }
 
 static int	ft_rotate(t_stack *stack)
@@ -55,8 +57,8 @@ static int	ft_rotate(t_stack *stack)
 		return (0);
 	stack->numbers = stack->numbers->next;
 	if (stack->numbers == NULL)
-		return (0);
+		return (1);
 	ft_lstadd_back(&stack->numbers, stack->numbers->prev);
 	stack->numbers->prev = NULL;
-	return (0);
+	return (1);
 }

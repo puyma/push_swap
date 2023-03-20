@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:21:51 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 21:19:35 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:05:20 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ int static	ft_reverse_rotate(t_stack *stack);
 // The last element becomes the first one.
 int	ft_rra(t_data *data)
 {
+	if (data->a->numbers == NULL || ft_lstsize(data->a->numbers) == 1)
+		return (0);
 	write(1, "rra\n", 4);
-	data->n_moves++;
-	ft_reverse_rotate(data->a);
+	data->n_moves += ft_reverse_rotate(data->a);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
-	return (0);
+	return (1);
 }
 
 // (reverse rotate b)
@@ -32,12 +33,13 @@ int	ft_rra(t_data *data)
 // The last element becomes the first one.
 int	ft_rrb(t_data *data)
 {
+	if (data->b->numbers == NULL || ft_lstsize(data->b->numbers) == 1)
+		return (0);
 	write(1, "rrb\n", 4);
-	data->n_moves++;
-	ft_reverse_rotate(data->b);
+	data->n_moves += ft_reverse_rotate(data->b);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
-	return (0);
+	return (1);
 }
 
 // rra and rrb at the same time.
@@ -46,18 +48,17 @@ int	ft_rrr(t_data *data)
 	write(1, "rrr\n", 4);
 	ft_rra(data);
 	ft_rrb(data);
-	return (0);
+	return (1);
 }
 
 static int	ft_reverse_rotate(t_stack *stack)
 {
 	t_list	*last;
 
-	if (stack->numbers == NULL)
-		return (0);
 	last = ft_lstlast(stack->numbers);
-	last->prev->next = NULL;
+	if (last->prev != NULL)
+		last->prev->next = NULL;
 	ft_lstadd_front(&stack->numbers, last);
 	stack->numbers = last;
-	return (0);
+	return (1);
 }

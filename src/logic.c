@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 14:11:52 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:19:12 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ static void		ft_case_two(t_data *data);
 static void		ft_case_three(t_data *data);
 static void		ft_case_five(t_data *data);
 static void		ft_pb_smallest(t_data *data);
+static int		ft_pb_biggest(t_data *data, int chunk);
 static int		ft_lst_position(t_list *l, t_list *node);
 static int		ft_issorted(t_data *data);
 static void		ft_do_chunk_method(t_data *data);
 static void		ft_pb_by_chunk(t_data *data, int chunk);
-static int		ft_nmoves_to_b(t_data *data, t_list *node);
+static void		ft_push_2a_by_chunk(t_data *data, int chunk);
+static int		ft_nmoves_to_b(t_data *data, t_list *node, int dir);
 static int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
 static t_list	*ft_search_from(t_data *data, int chunk, int dir);
 
@@ -44,18 +46,71 @@ int	ft_do_logic(t_data *data)
 	return (0);
 }
 
+// need to add support for negative numbers
+// might add data->lowest and data->highest
 static void	ft_do_chunk_method(t_data *data)
 {
 	int	chunk_size;
 	int	chunk;
 
-	chunk_size = 20;;
+	chunk_size = 20;
 	chunk = chunk_size;
 	while (data->a->numbers != NULL)
 	{
 		ft_pb_by_chunk(data, chunk);
 		chunk += chunk_size;
 	}
+	while (data->b->numbers != NULL)
+	{
+		ft_push_2a_by_chunk(data, chunk);
+		if (ft_pb_biggest(data, chunk) == -1)
+			chunk -= chunk_size;
+	}
+}
+
+static void	ft_push_2a_by_chunk(t_data *data, int chunk)
+{
+	int	n_moves;
+	int	i;
+
+	n_moves = ft_pb_biggest(data, chunk);
+	i = 0;
+	while (i < n_moves)
+	{
+		ft_rb(data);
+		i++;
+	}
+	if (n_moves >= 0)
+		ft_pa(data);
+	i = 0;
+	while (i < n_moves)
+	{
+		ft_rrb(data);
+		i++;
+	}
+	if (ft_lstsize(data->b->numbers) == 0)
+		ft_pa(data);
+}
+
+static int	ft_pb_biggest(t_data *data, int chunk)
+{
+	int		n_moves;
+	t_list	*lb;
+	t_list	*biggest;
+
+	n_moves = 0;
+	lb = data->b->numbers;
+	biggest = lb;
+	while (lb != NULL)
+	{
+		if (biggest->content < lb->content && lb->content > chunk)
+			biggest = lb;
+		lb = lb->next;
+	}
+	if (biggest && biggest->content < chunk)
+		return (-1);
+	n_moves = ft_lst_position(data->b->numbers, biggest);
+	return (n_moves);
 }
 
 static void	ft_pb_by_chunk(t_data *data, int chunk)
@@ -67,13 +122,14 @@ static void	ft_pb_by_chunk(t_data *data, int chunk)
 
 	l = data->a->numbers;
 	i = 0;
-	while (data->a->numbers != NULL && i < chunk)
+	while (data->a->numbers != NULL && i <= chunk)
 	{
 		from_top = ft_search_from(data, chunk, forward);
 		from_bottom = ft_search_from(data, chunk, backwards);
 		if (from_bottom == NULL)
 			break ;
-		if (ft_nmoves_to_b(data, from_top) < ft_nmoves_to_b(data, from_bottom))
+		if (ft_nmoves_to_b(data, from_top, forward)
+			< ft_nmoves_to_b(data, from_bottom, backwards))
 			ft_pb_node(data, from_top, &ft_ra);
 		else
 			ft_pb_node(data, from_bottom, &ft_rra);
@@ -103,16 +159,22 @@ static t_list	*ft_search_from(t_data *data, int chunk, int dir)
 	return (node);
 }
 
-static int	ft_nmoves_to_b(t_data *data, t_list *node)
+static int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
 {
 	int		i;
 	t_list	*l;
 
 	i = 0;
-	l = data->a->numbers;
+	if (dir == backwards)
+		l = ft_lstlast(data->a->numbers);
+	else
+		l = data->a->numbers;
 	while (l != node)
 	{
-		l = l->next;
+		if (dir == backwards)
+			l = l->prev;
+		else
+			l = l->next;
 		i++;
 	}
 	return (i);
@@ -171,8 +233,8 @@ static int	ft_lst_position(t_list *list, t_list *node)
 	int		position;
 
 	l = list;
-	position = 1;
-	while (l != node)
+	position = 0;
+	while (l != NULL && l != node)
 	{
 		position++;
 		l = l->next;

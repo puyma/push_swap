@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/19 20:31:59 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:18:23 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ static int	ft_str_isdigit(char *str)
 	char	*s;
 
 	s = str;
+	if (*str == '\0')
+		return (0);
 	while (s && *s != '\0')
 	{
 		if (ft_isdigit(*s++) == 0)
