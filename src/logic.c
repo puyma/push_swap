@@ -6,24 +6,30 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 12:21:32 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:04:48 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_case_two(t_data *data);
-static void	ft_case_three(t_data *data);
-static void	ft_case_five(t_data *data);
-static void	ft_pb_smallest(t_data *data);
-static int	ft_lst_position(t_list *l, t_list *node);
-static int	ft_issorted(t_data *data);
-static void	ft_do_chunk_method(t_data *data);
-static int	ft_nmoves_to_b(t_data *data, t_list *node);
-static int	ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
+#define CHUNK_SIZE	20
+
+static void		ft_case_two(t_data *data);
+static void		ft_case_three(t_data *data);
+static void		ft_case_five(t_data *data);
+static void		ft_pb_smallest(t_data *data);
+static int		ft_lst_position(t_list *l, t_list *node);
+static int		ft_issorted(t_data *data);
+static void		ft_do_chunk_method(t_data *data, int chunk);
+static int		ft_nmoves_to_b(t_data *data, t_list *node);
+static int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
+static t_list	*ft_search_from(t_data *data, int chunk, int dir);
 
 int	ft_do_logic(t_data *data)
 {
+	int	chunk;
+
+	chunk = 0;
 	if (data->size == 1)
 		return (0);
 	else if (data->size == 2)
@@ -34,47 +40,59 @@ int	ft_do_logic(t_data *data)
 		ft_case_five(data);
 	else if (data->size <= 100)
 	{
-		data->chunk_size = 10;
-		ft_do_chunk_method(data);
+		chunk = CHUNK_SIZE;
+		while (data->a->numbers != NULL)
+		{
+			ft_do_chunk_method(data, chunk);
+			chunk += CHUNK_SIZE;
+		}
 	}
 	return (0);
 }
 
-static void	ft_do_chunk_method(t_data *data)
+static void	ft_do_chunk_method(t_data *data, int chunk)
 {
+	int		i;
 	t_list	*l;
 	t_list	*from_top;
 	t_list	*from_bottom;
 
 	l = data->a->numbers;
-	from_top = NULL;
-	from_bottom = NULL;
-	while (l != NULL)
+	i = 0;
+	while (data->a->numbers != NULL && i < chunk)
 	{
-		if (l->content <= data->chunk_size)
-		{
-			from_top = l;
+		from_top = ft_search_from(data, chunk, forward);
+		from_bottom = ft_search_from(data, chunk, backwards);
+		if (from_bottom == NULL)
 			break ;
-		}
-		l = l->next;
-	}
-	l = ft_lstlast(data->a->numbers);
-	while (l != NULL)
-	{
-		if (l->content <= data->chunk_size)
-		{
-			from_bottom = l;
-			break ;
-		}
-		l = l->prev;
-	}
-	if (from_top != from_bottom)
-	{
 		if (ft_nmoves_to_b(data, from_top) < ft_nmoves_to_b(data, from_bottom))
 			ft_pb_node(data, from_top, &ft_ra);
 		else
 			ft_pb_node(data, from_bottom, &ft_rra);
+		i++;
 	}
+}
+
+static t_list	*ft_search_from(t_data *data, int chunk, int dir)
+{
+	t_list	*l;
+	t_list	*node;
+
+	if (dir == backwards)
+		l = ft_lstlast(data->a->numbers);
+	else
+		l = data->a->numbers;
+	node = NULL;
+	while (l != NULL)
+	{
+		if (l->content < chunk)
+			return (l);
+		if (dir == backwards)
+			l = l->prev;
+		else
+			l = l->next;
+	}
+	return (node);
 }
 
 static int	ft_nmoves_to_b(t_data *data, t_list *node)
@@ -89,7 +107,6 @@ static int	ft_nmoves_to_b(t_data *data, t_list *node)
 		l = l->next;
 		i++;
 	}
-	ft_printf("nmoves: %d\n", i);
 	return (i);
 }
 

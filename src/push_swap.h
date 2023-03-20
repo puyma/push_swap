@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 10:53:27 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:09:22 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define FD			1
 # define LOG		1
 # define DIRECTION	1
+
+enum e_direction { backwards = 0, forward }	direction;
 
 typedef struct s_list
 {
