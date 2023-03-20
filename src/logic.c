@@ -6,13 +6,11 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 14:04:48 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:11:52 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-#define CHUNK_SIZE	20
 
 static void		ft_case_two(t_data *data);
 static void		ft_case_three(t_data *data);
@@ -20,7 +18,8 @@ static void		ft_case_five(t_data *data);
 static void		ft_pb_smallest(t_data *data);
 static int		ft_lst_position(t_list *l, t_list *node);
 static int		ft_issorted(t_data *data);
-static void		ft_do_chunk_method(t_data *data, int chunk);
+static void		ft_do_chunk_method(t_data *data);
+static void		ft_pb_by_chunk(t_data *data, int chunk);
 static int		ft_nmoves_to_b(t_data *data, t_list *node);
 static int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
 static t_list	*ft_search_from(t_data *data, int chunk, int dir);
@@ -28,8 +27,10 @@ static t_list	*ft_search_from(t_data *data, int chunk, int dir);
 int	ft_do_logic(t_data *data)
 {
 	int	chunk;
+	int	chunk_size;
 
 	chunk = 0;
+	chunk_size = 20;
 	if (data->size == 1)
 		return (0);
 	else if (data->size == 2)
@@ -39,18 +40,25 @@ int	ft_do_logic(t_data *data)
 	else if (data->size == 4 || data->size == 5)
 		ft_case_five(data);
 	else if (data->size <= 100)
-	{
-		chunk = CHUNK_SIZE;
-		while (data->a->numbers != NULL)
-		{
-			ft_do_chunk_method(data, chunk);
-			chunk += CHUNK_SIZE;
-		}
-	}
+		ft_do_chunk_method(data);
 	return (0);
 }
 
-static void	ft_do_chunk_method(t_data *data, int chunk)
+static void	ft_do_chunk_method(t_data *data)
+{
+	int	chunk_size;
+	int	chunk;
+
+	chunk_size = 20;;
+	chunk = chunk_size;
+	while (data->a->numbers != NULL)
+	{
+		ft_pb_by_chunk(data, chunk);
+		chunk += chunk_size;
+	}
+}
+
+static void	ft_pb_by_chunk(t_data *data, int chunk)
 {
 	int		i;
 	t_list	*l;
