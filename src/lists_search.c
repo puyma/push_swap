@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:24:04 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 15:24:32 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:55:11 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,13 @@ t_list	*ft_search_from(t_data *data, int chunk, int dir)
 			l = l->next;
 	}
 	return (node);
+}
+
+void	ft_lstiter_s(t_list *lst, void (*f)(void *))
+{
+	while (lst != NULL)
+	{
+		f(lst->content_s);
+		lst = lst->next;
+	}
 }
