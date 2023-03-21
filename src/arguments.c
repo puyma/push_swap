@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 17:18:23 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:26:42 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ int	ft_parse_arguments(t_data *data, int argc, char **argv)
 	t_list	*list;
 
 	i = 1;
-	while (i < argc)
+	if (argc == 2)
+		argv = ft_split(argv[1], ' ');
+	else
+		argv++;
+	while (argv && *argv != NULL)
 	{
-		if (ft_check_number(argv[i]) == 0 || ft_islimit(argv[i]) == 0)
+		if (ft_check_number(*argv) == 0 || ft_islimit(*argv) == 0)
 			return (0);
-		list = ft_lstnew(ft_atoi(argv[i]));
-		list->index = i++;
+		list = ft_lstnew(ft_atoi(*argv));
 		ft_lstadd_back(&data->a->numbers, list);
+		argv++;
 	}
 	list = data->a->numbers;
 	while (list != NULL)
