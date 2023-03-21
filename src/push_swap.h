@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 17:10:48 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/21 12:04:00 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdlib.h> /* malloc, free, exit */
 # include "libft.h" /* ft_printf, ... */
 
-# define FD			1
 # define LOG		0
 # define DIRECTION	1
 
