@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/21 14:28:33 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/21 14:42:25 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,17 +41,17 @@ BONUS_FILES	:=	$(addsuffix _bonus.c, $(basename $(SRC_FILES)))
 B_OBJ_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(notdir $(basename $(BONUS_FILES)))))
 B_DEP_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .d, $(notdir $(basename $(BONUS_FILES)))))
 
-.PHONY: clean fclean re all debug
+.PHONY: clean fclean re all debug bonus
 
 $(NAME): $(LIBFT) $(OBJ_FILES) $(DEP_FILES) src/$(NAME).h
 	$(CC) $(INC) $(CFLAGS) $(LFLAGS) -O3 $(OBJ_FILES) -o $(basename $@)
 	@echo "Built $(STYLE)$(basename $@)$(NOSTYLE)"
 
-bonus: checker
-
-checker: $(LIBFT) $(B_OBJ_FILES) $(B_DEP_FILES) src/$(NAME)_bonus.h
+checker: $(LIBFT) $(B_OBJ_FILES) $(B_DEP_FILES) src/$(NAME).h
 	$(CC) $(INC) $(CFLAGS) $(LFLAGS) -O3 $(B_OBJ_FILES) -o $(basename $@)
 	@echo "Built $(STYLE)$(basename $@)$(NOSTYLE)"
+
+bonus: checker
 
 $(LIBFT):
 	make -C $(dir $@)
