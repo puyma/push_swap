@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 14:26:09 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:39:12 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ int	main(int argc, char **argv)
 	if (ft_parse_arguments(data, argc, argv) == 0)
 		ft_exit(0);
 	ft_do_logic(data);
-	return (data->n_moves);
+	return (0);
 }
