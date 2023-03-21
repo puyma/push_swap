@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 17:57:16 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:24:56 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,11 @@ static void		ft_case_three(t_data *data);
 static void		ft_case_five(t_data *data);
 static void		ft_pb_smallest(t_data *data);
 static int		ft_pb_biggest(t_data *data, int chunk);
-static int		ft_lst_position(t_list *l, t_list *node);
-static int		ft_issorted(t_data *data);
 static void		ft_do_chunk_method(t_data *data);
 static void		ft_pb_by_chunk(t_data *data, int chunk);
 static void		ft_push_2a_by_chunk(t_data *data, int chunk);
 static int		ft_nmoves_to_b(t_data *data, t_list *node, int dir);
 static int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
-static t_list	*ft_search_from(t_data *data, int chunk, int dir);
 
 int	ft_do_logic(t_data *data)
 {
@@ -140,28 +137,6 @@ static void	ft_pb_by_chunk(t_data *data, int chunk)
 	}
 }
 
-static t_list	*ft_search_from(t_data *data, int chunk, int dir)
-{
-	t_list	*l;
-	t_list	*node;
-
-	if (dir == backwards)
-		l = ft_lstlast(data->a->numbers);
-	else
-		l = data->a->numbers;
-	node = NULL;
-	while (l != NULL)
-	{
-		if (l->content < chunk)
-			return (l);
-		if (dir == backwards)
-			l = l->prev;
-		else
-			l = l->next;
-	}
-	return (node);
-}
-
 static int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
 {
 	int		i;
@@ -191,20 +166,6 @@ static int	ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *))
 	return (0);
 }
 
-static int	ft_issorted(t_data *data)
-{
-	t_list	*l;
-
-	l = data->a->numbers;
-	while (l != NULL && l->next != NULL)
-	{
-		l = l->next;
-		if (l->prev->content > l->content)
-			return (0);
-	}
-	return (1);
-}
-
 static void	ft_pb_smallest(t_data *data)
 {
 	t_list	*la;
@@ -228,21 +189,6 @@ static void	ft_pb_smallest(t_data *data)
 			ft_rra(data);
 	}
 	ft_pb(data);
-}
-
-static int	ft_lst_position(t_list *list, t_list *node)
-{
-	t_list	*l;
-	int		position;
-
-	l = list;
-	position = 0;
-	while (l != NULL && l != node)
-	{
-		position++;
-		l = l->next;
-	}
-	return (position);
 }
 
 static void	ft_case_five(t_data *data)
