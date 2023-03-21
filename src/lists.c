@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:53:32 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/18 18:29:05 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:21:53 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,21 @@ t_list	*ft_lstnew(int content)
 	if (list == NULL)
 		return (NULL);
 	list->content = content;
+	list->content_s = NULL;
+	list->next = NULL;
+	list->prev = NULL;
+	return (list);
+}
+
+t_list	*ft_lstnew_str(char	*content_s)
+{
+	t_list	*list;
+
+	list = (t_list *) ft_calloc(1, sizeof(t_list));
+	if (list == NULL)
+		return (NULL);
+	list->content = 0;
+	list->content_s = content_s;
 	list->next = NULL;
 	list->prev = NULL;
 	return (list);
@@ -32,40 +47,24 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+size_t	ft_lst_position(t_list *list, t_list *node)
 {
-	t_list	*first;
+	t_list	*l;
+	size_t	position;
 
-	first = *lst;
-	if (*lst != NULL)
-		first->prev = new;
-	new->prev = NULL;
-	new->next = first;
-	*lst = new;
+	l = list;
+	position = 0;
+	while (l != NULL && l != node)
+	{
+		position++;
+		l = l->next;
+	}
+	return (position);
 }
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+size_t	ft_lstsize(t_list *lst)
 {
-	t_list	*last;
-
-	last = ft_lstlast(*lst);
-	if (last == NULL)
-	{
-		*lst = new;
-		new->prev = NULL;
-		new->next = NULL;
-	}
-	else
-	{
-		last->next = new;
-		new->prev = last;
-		new->next = NULL;
-	}
-}
-
-int	ft_lstsize(t_list *lst)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (lst != NULL)
