@@ -6,13 +6,13 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 15:47:38 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:08:12 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	(*ft_set_func(char *str))(t_data *);
+static int	(*ft_set_func(char *str))(t_data *data);
 
 int	ft_check_logic(t_data *data, t_list *instructions)
 {
@@ -35,7 +35,7 @@ int	ft_check_logic(t_data *data, t_list *instructions)
 	return (1);
 }
 
-static int	(*ft_set_func(char *str))(t_data *)
+static int	(*ft_set_func(char *str))(t_data *data)
 {
 	if (ft_strncmp(str, "pa", 2) == 0)
 		return (&ft_pa);

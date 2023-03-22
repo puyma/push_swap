@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 15:43:09 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:07:56 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		ft_do_logic(t_data *data);
 void	ft_print_stacks(t_data *data, int dir);
 void	ft_exit(int n);
 int		ft_issorted(t_data *data);
+void	ft_free(t_data *data);
 
 // checker functions:
 
