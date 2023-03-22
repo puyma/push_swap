@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:24:04 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 15:55:11 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:38:35 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,18 @@ void	ft_lstiter_s(t_list *lst, void (*f)(void *))
 		f(lst->content_s);
 		lst = lst->next;
 	}
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp;
+
+	while (*lst != NULL)
+	{
+		del((*lst)->content_s);
+		temp = (*lst)->next;
+		free(*lst);
+		*lst = temp;
+	}
+	lst = NULL;
 }

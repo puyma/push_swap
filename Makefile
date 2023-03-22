@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/22 15:10:19 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/22 16:31:03 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ OS			:=	$(shell uname)
 NOSTYLE		:=	\033[0m
 STYLE		:=	\033[0;32m
 
-SRC_FILES	:=	src/arguments.c src/data.c src/exit.c src/ft_issorted.c \
-				src/lists.c src/lists_add.c src/lists_search.c \
-				src/logic.c src/main.c src/print.c src/push.c \
-				src/reverse_rotate.c src/rotate.c src/swap.c
+SRC_FILES	:=	src/arguments.c src/data.c src/exit.c src/free.c \
+				src/ft_issorted.c src/lists.c src/lists_add.c \
+				src/lists_other.c src/logic.c src/main.c src/print.c \
+				src/push.c src/reverse_rotate.c src/rotate.c src/swap.c
 OBJ_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(notdir $(basename $(SRC_FILES)))))
 DEP_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .d, $(notdir $(basename $(SRC_FILES)))))
 
