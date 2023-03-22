@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 13:47:04 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:30:49 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static int	ft_check_instructions(t_list *instructions)
 	{
 		str = l->content_s;
 		len = ft_strlen(str);
-		ft_printf("%s (%u)\n", str, len);
 		if (*str == 'p' && ft_strchr("ab", *(str + 1)) != 0 && len == 2)
 			return (1);
 		if (ft_strchr("sr", *str) != 0
