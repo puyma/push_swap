@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/21 15:26:07 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/22 10:09:28 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,11 @@ checker: $(LIBFT) $(B_OBJ_FILES) $(B_DEP_FILES) src/$(NAME).h
 	$(CC) $(INC) $(CFLAGS) $(LFLAGS) -O3 $(B_OBJ_FILES) -o $(basename $@)
 	@echo "Built $(STYLE)$(basename $@)$(NOSTYLE)"
 
-bonus: checker
+generator: $(LIBFT) src/generator.c src/$(NAME).h
+	$(CC) $(INC) $(CFLAGS) $(LFLAGS) -O3 src/generator.c -o $(basename $@)
+	@echo "Built $(STYLE)$(basename $@)$(NOSTYLE)"
+
+bonus: checker generator
 
 $(LIBFT):
 	make -C $(dir $@)
