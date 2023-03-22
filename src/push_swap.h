@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 15:55:32 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:43:09 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_data
 	t_stack			*a;
 	t_stack			*b;
 	int				size;
+	int				fd;
 	int				n_moves;
 	int				chunk_size;
 }					t_data;
