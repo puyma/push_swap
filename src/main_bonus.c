@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 16:07:17 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:04:35 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ int	main(int argc, char **argv)
 	t_data	*data;
 	t_list	*instructions;
 
-	data = NULL;
-	instructions = NULL;
 	if (argc < 2)
 		return (0);
 	data = ft_init_data();
@@ -42,6 +40,7 @@ int	main(int argc, char **argv)
 	else
 		ft_printf("OK\n");
 	ft_free(data);
+	ft_lstclear(&instructions, &free);
 	return (0);
 }
 
