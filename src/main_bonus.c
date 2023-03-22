@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 16:59:37 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:47:04 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	if (ft_parse_arguments(data, argc, argv) == 0)
 		ft_exit(0);
 	instructions = ft_read_instructions();
-	if (instructions == NULL || ft_check_instructions(instructions) == 0)
+	if (ft_check_instructions(instructions) == 0)
 		ft_exit(0);
 	if (ft_check_logic(data, instructions) == 0)
 		ft_printf("KO\n");
@@ -57,35 +57,6 @@ static t_list	*ft_read_instructions(void)
 	return (list);
 }
 
-static int	ft_check_instructions(t_list *instructions)
-{
-	t_list	*l;
-
-	l = instructions;
-	while (l != NULL)
-	{
-		if (ft_strlen(l->content_s) > 3)
-			return (0);
-		if (*(l->content_s) == 's'
-			&& ft_strchr("abs", *(l->content_s + 1)) == 0)
-			return (0);
-		if (*(l->content_s) == 'p'
-			&& ft_strchr("ab", *(l->content_s + 1)) == 0
-			&& *(l->content_s + 2) != '\0')
-			return (0);
-		if (*(l->content_s) == 'r'
-			&& ft_strchr("abr", *(l->content_s + 1)) == 0
-			&& *(l->content_s + 2) != '\0')
-			return (0);
-		else if (*(l->content_s + 1) == 'r'
-			&& ft_strchr("abr", *(l->content_s + 2)) == 0
-			&& *(l->content_s + 3) != '\0')
-			return (0);
-		l = l->next;
-	}
-	return (1);
-}
-
 static void	ft_delete_nl(void *ptr)
 {
 	char	*str;
@@ -97,4 +68,33 @@ static void	ft_delete_nl(void *ptr)
 			*str = '\0';
 		str++;
 	}
+}
+
+static int	ft_check_instructions(t_list *instructions)
+{
+	t_list	*l;
+	char	*str;
+	size_t	len;
+
+	l = instructions;
+	if (l == NULL)
+		return (1);
+	while (l != NULL)
+	{
+		str = l->content_s;
+		len = ft_strlen(str);
+		ft_printf("%s (%u)\n", str, len);
+		if (*str == 'p' && ft_strchr("ab", *(str + 1)) != 0 && len == 2)
+			return (1);
+		if (ft_strchr("sr", *str) != 0
+			&& (ft_strchr("ab", *(str + 1)) != 0
+				|| *(str + 1) == *str) && len == 2)
+			return (1);
+		else if (*str == 'r' && *(str + 1) == 'r'
+			&& (ft_strchr("ab", *(str + 2)) != 0
+				|| *(str + 2) == *str) && len == 3)
+			return (1);
+		l = l->next;
+	}
+	return (0);
 }
