@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 14:26:42 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:59:35 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ static int	ft_check_duplicates(t_list *list);
 
 int	ft_parse_arguments(t_data *data, int argc, char **argv)
 {
-	int		i;
 	t_list	*list;
 
-	i = 1;
 	if (argc == 2)
-		argv = ft_split(argv[1], ' ');
+	{
+		data->split = ft_split(argv[1], ' ');
+		argv = data->split;
+	}
 	else
 		argv++;
 	while (argv && *argv != NULL)
 	{
 		if (ft_check_number(*argv) == 0 || ft_islimit(*argv) == 0)
 			return (0);
-		list = ft_lstnew(ft_atoi(*argv));
+		list = ft_lstnew(ft_atoi(*argv++));
 		ft_lstadd_back(&data->a->numbers, list);
-		argv++;
 	}
 	list = data->a->numbers;
 	while (list != NULL)
