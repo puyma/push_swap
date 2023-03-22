@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:02:47 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/20 17:04:11 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:41:11 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_sa(t_data *data)
 {
 	if (data->a->numbers == NULL || ft_lstsize(data->a->numbers) == 1)
 		return (0);
-	write(1, "sa\n", 3);
+	write(data->fd, "sa\n", 3);
 	data->n_moves += ft_swap(data->a);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
@@ -35,7 +35,7 @@ int	ft_sb(t_data *data)
 {
 	if (data->b->numbers == NULL || ft_lstsize(data->b->numbers) == 1)
 		return (0);
-	write(1, "sb\n", 3);
+	write(data->fd, "sb\n", 3);
 	data->n_moves += ft_swap(data->b);
 	if (LOG > 0)
 		ft_print_stacks(data, DIRECTION);
@@ -45,7 +45,7 @@ int	ft_sb(t_data *data)
 // sa and sb at the same time.
 int	ft_ss(t_data *data)
 {
-	write(1, "ss\n", 3);
+	write(data->fd, "ss\n", 3);
 	ft_swap(data->a);
 	ft_swap(data->b);
 	return (1);
