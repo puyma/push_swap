@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 16:07:56 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/22 16:56:45 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_data
 {
 	t_stack			*a;
 	t_stack			*b;
+	char			**split;
 	int				size;
 	int				fd;
 	int				n_moves;
@@ -80,6 +81,7 @@ int		ft_ss(t_data *data);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstiter_s(t_list *lst, void (*f)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
 size_t	ft_lstsize(t_list *lst);
 size_t	ft_lst_position(t_list *list, t_list *node);
 t_list	*ft_lstnew_str(char *content_s);
