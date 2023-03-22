@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/03/22 10:09:28 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/03/22 15:10:19 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ clean:
 	make fclean -C $(LIBFT_DIR)
 
 fclean: clean
-	$(RM) $(NAME) checker
+	$(RM) $(NAME) checker generator
 
 re: fclean
 	$(MAKE)
