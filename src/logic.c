@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 15:24:56 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/23 12:10:08 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	ft_do_logic(t_data *data)
 	int	chunk;
 	int	chunk_size;
 
+	exit(0);
 	chunk = 0;
 	chunk_size = 20;
 	if (data->size == 1)
@@ -124,12 +125,12 @@ static void	ft_pb_by_chunk(t_data *data, int chunk)
 	i = 0;
 	while (data->a->numbers != NULL && i <= chunk)
 	{
-		from_top = ft_search_from(data, chunk, forward);
-		from_bottom = ft_search_from(data, chunk, backwards);
+		from_top = ft_search_from(data, chunk, 1);
+		from_bottom = ft_search_from(data, chunk, -1);
 		if (from_bottom == NULL)
 			break ;
-		if (ft_nmoves_to_b(data, from_top, forward)
-			< ft_nmoves_to_b(data, from_bottom, backwards))
+		if (ft_nmoves_to_b(data, from_top, 1)
+			< ft_nmoves_to_b(data, from_bottom, -1))
 			ft_pb_node(data, from_top, &ft_ra);
 		else
 			ft_pb_node(data, from_bottom, &ft_rra);
@@ -143,13 +144,13 @@ static int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
 	t_list	*l;
 
 	i = 0;
-	if (dir == backwards)
+	if (dir == -1)
 		l = ft_lstlast(data->a->numbers);
 	else
 		l = data->a->numbers;
 	while (l != node)
 	{
-		if (dir == backwards)
+		if (dir == -1)
 			l = l->prev;
 		else
 			l = l->next;
