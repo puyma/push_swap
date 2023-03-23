@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/23 12:10:08 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:02:41 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_do_logic(t_data *data)
 	int	chunk;
 	int	chunk_size;
 
-	exit(0);
 	chunk = 0;
 	chunk_size = 20;
 	if (data->size == 1)
