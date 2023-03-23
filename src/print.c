@@ -6,22 +6,22 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:53:27 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/23 11:21:21 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:08:58 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_list	*ft_iter_direction(t_list *l, int dir);
-static t_list	*ft_start_node(t_list *l, int dir);
+static t_list	*ft_iter_direction(t_list *l);
+static t_list	*ft_start_node(t_list *l);
 
-void	ft_print_stacks(t_data *data, int dir)
+void	ft_print_stacks(t_data *data)
 {
 	t_list	*la;
 	t_list	*lb;
 
-	la = ft_start_node(data->a->numbers, dir);
-	lb = ft_start_node(data->b->numbers, dir);
+	la = ft_start_node(data->a->numbers);
+	lb = ft_start_node(data->b->numbers);
 	write(1, "----------", 10);
 	write(1, "\n", 1);
 	while (la != NULL || lb != NULL)
@@ -32,29 +32,29 @@ void	ft_print_stacks(t_data *data, int dir)
 		if (lb)
 			ft_printf("%d", lb->content);
 		write(1, "\n", 1);
-		la = ft_iter_direction(la, dir);
-		lb = ft_iter_direction(lb, dir);
+		la = ft_iter_direction(la);
+		lb = ft_iter_direction(lb);
 	}
 	write(1, "-\t-\n", 4);
 	write(1, "A\tB\n", 4);
 }
 
-static t_list	*ft_iter_direction(t_list *l, int dir)
+static t_list	*ft_iter_direction(t_list *l)
 {
 	if (l == NULL)
 		return (l);
-	if (dir > 0)
+	if (DIRECTION > 0)
 		return (l->next);
-	else if (dir < 0)
+	else if (DIRECTION < 0)
 		return (l->prev);
 	return (NULL);
 }
 
-static t_list	*ft_start_node(t_list *l, int dir)
+static t_list	*ft_start_node(t_list *l)
 {
-	if (l == NULL || dir > 0)
+	if (l == NULL || DIRECTION > 0)
 		return (l);
-	else if (dir < 0)
+	else if (DIRECTION < 0)
 		return (ft_lstlast(l));
 	return (NULL);
 }
