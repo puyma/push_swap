@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 16:56:45 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/23 11:23:47 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 # include "libft.h" /* ft_printf, ... */
 
 # define LOG		0
-# define DIRECTION	1
-
-enum e_direction { backwards = 0, forward }	direction;
+# define DIRECTION	-1
 
 typedef struct s_list
 {
