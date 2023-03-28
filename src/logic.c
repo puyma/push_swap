@@ -6,22 +6,11 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/23 15:02:41 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:43:12 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void		ft_case_two(t_data *data);
-static void		ft_case_three(t_data *data);
-static void		ft_case_five(t_data *data);
-static void		ft_pb_smallest(t_data *data);
-static int		ft_pb_biggest(t_data *data, int chunk);
-static void		ft_do_chunk_method(t_data *data);
-static void		ft_pb_by_chunk(t_data *data, int chunk);
-static void		ft_push_2a_by_chunk(t_data *data, int chunk);
-static int		ft_nmoves_to_b(t_data *data, t_list *node, int dir);
-static int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
 
 int	ft_do_logic(t_data *data)
 {
@@ -43,40 +32,18 @@ int	ft_do_logic(t_data *data)
 	return (0);
 }
 
-// need to add support for negative numbers
-// might add data->lowest and data->highest
-static void	ft_do_chunk_method(t_data *data)
-{
-	int	chunk_size;
-	int	chunk;
-
-	if (data->size <= 100)
-		chunk_size = 20;
-	else
-		chunk_size = 44;
-	chunk = chunk_size;
-	while (data->a->numbers != NULL)
-	{
-		ft_pb_by_chunk(data, chunk);
-		chunk += chunk_size;
-	}
-	while (data->b->numbers != NULL)
-	{
-		ft_push_2a_by_chunk(data, chunk);
-		if (ft_pb_biggest(data, chunk) == -1)
-			chunk -= chunk_size;
-	}
-}
-
-static void	ft_push_2a_by_chunk(t_data *data, int chunk)
+// next to FIX---
+void	ft_push_2a_by_chunk(t_data *data, int chunk)
 {
 	int	n_moves;
 	int	i;
 
 	n_moves = ft_pb_biggest(data, chunk);
+	//ft_printf("n_moves: %d\n", n_moves);
 	i = 0;
 	while (i < n_moves)
 	{
+		//write(1, "d\t", 2);
 		ft_rb(data);
 		i++;
 	}
@@ -85,6 +52,7 @@ static void	ft_push_2a_by_chunk(t_data *data, int chunk)
 	i = 0;
 	while (i < n_moves)
 	{
+		//write(1, "e\t", 2);
 		ft_rrb(data);
 		i++;
 	}
@@ -92,7 +60,7 @@ static void	ft_push_2a_by_chunk(t_data *data, int chunk)
 		ft_pa(data);
 }
 
-static int	ft_pb_biggest(t_data *data, int chunk)
+int	ft_pb_biggest(t_data *data, int chunk)
 {
 	int		n_moves;
 	t_list	*lb;
@@ -113,7 +81,7 @@ static int	ft_pb_biggest(t_data *data, int chunk)
 	return (n_moves);
 }
 
-static void	ft_pb_by_chunk(t_data *data, int chunk)
+void	ft_pb_by_chunk(t_data *data, int chunk)
 {
 	int		i;
 	t_list	*l;
@@ -129,7 +97,7 @@ static void	ft_pb_by_chunk(t_data *data, int chunk)
 		if (from_bottom == NULL)
 			break ;
 		if (ft_nmoves_to_b(data, from_top, 1)
-			< ft_nmoves_to_b(data, from_bottom, -1))
+			<= ft_nmoves_to_b(data, from_bottom, -1))
 			ft_pb_node(data, from_top, &ft_ra);
 		else
 			ft_pb_node(data, from_bottom, &ft_rra);
@@ -137,7 +105,7 @@ static void	ft_pb_by_chunk(t_data *data, int chunk)
 	}
 }
 
-static int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
+int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
 {
 	int		i;
 	t_list	*l;
@@ -158,79 +126,13 @@ static int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
 	return (i);
 }
 
-static int	ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *))
+int	ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *))
 {
 	while (data->a->numbers != node)
+	{
+		//write(1, "c\t", 2);
 		ft(data);
+	}
 	ft_pb(data);
 	return (0);
-}
-
-static void	ft_pb_smallest(t_data *data)
-{
-	t_list	*la;
-	t_list	*smallest;
-	int		position;
-
-	la = data->a->numbers;
-	smallest = la;
-	while (la != NULL)
-	{
-		if (smallest->content > la->content)
-			smallest = la;
-		la = la->next;
-	}
-	position = ft_lst_position(data->a->numbers, smallest);
-	while (data->a->numbers->content != smallest->content)
-	{
-		if ((data->size - position) >= data->size / 2)
-			ft_ra(data);
-		else
-			ft_rra(data);
-	}
-	ft_pb(data);
-}
-
-static void	ft_case_five(t_data *data)
-{
-	if (ft_issorted(data) == 0)
-	{
-		while (ft_lstsize(data->a->numbers) != 3)
-			ft_pb_smallest(data);
-		ft_case_three(data);
-		while (data->b->numbers != NULL)
-			ft_pa(data);
-	}
-}
-
-static void	ft_case_three(t_data *data)
-{
-	int	x;
-	int	y;
-	int	z;
-
-	x = 0;
-	y = 0;
-	z = 0;
-	if (data->a->numbers->content > data->a->numbers->next->content)
-		x = 1;
-	if (data->a->numbers->next->content > data->a->numbers->next->next->content)
-		y = 1;
-	if (data->a->numbers->next->next->content > data->a->numbers->content)
-		z = 1;
-	if ((x + y + z) >= 2)
-		ft_sa(data);
-	if (y == z)
-		ft_ra(data);
-	if (y == 1 && z == 0)
-		ft_rra(data);
-}
-
-static void	ft_case_two(t_data *data)
-{
-	t_list	*l;
-
-	l = data->a->numbers;
-	if (l->content > l->next->content)
-		ft_ra(data);
 }
