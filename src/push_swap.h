@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/28 15:23:37 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:41:11 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ void	ft_do_chunk_method(t_data *data);
 void	ft_pb_by_chunk(t_data *data, int chunk);
 void	ft_push_2a_by_chunk(t_data *data, int chunk);
 int		ft_nmoves_to_b(t_data *data, t_list *node, int dir);
+int		ft_nmoves_to_a(t_data *data, t_list *node, int dir);
 int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
+int		ft_pa_node(t_data *data, t_list *node, int (*ft)(t_data *));
 
 // checker functions:
 

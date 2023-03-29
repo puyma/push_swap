@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 16:59:35 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:00:13 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_parse_arguments(t_data *data, int argc, char **argv)
 {
 	t_list	*list;
 
-	if (argc == 2)
+	if (argc == 2 && *argv[1] != '\0')
 	{
 		data->split = ft_split(argv[1], ' ');
 		argv = data->split;

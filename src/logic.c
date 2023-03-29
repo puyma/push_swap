@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/28 17:43:12 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:51:02 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,29 +35,16 @@ int	ft_do_logic(t_data *data)
 // next to FIX---
 void	ft_push_2a_by_chunk(t_data *data, int chunk)
 {
-	int	n_moves;
-	int	i;
+	t_list	*biggest;
 
-	n_moves = ft_pb_biggest(data, chunk);
-	//ft_printf("n_moves: %d\n", n_moves);
-	i = 0;
-	while (i < n_moves)
-	{
-		//write(1, "d\t", 2);
-		ft_rb(data);
-		i++;
-	}
-	if (n_moves >= 0)
-		ft_pa(data);
-	i = 0;
-	while (i < n_moves)
-	{
-		//write(1, "e\t", 2);
-		ft_rrb(data);
-		i++;
-	}
-	if (ft_lstsize(data->b->numbers) == 0)
-		ft_pa(data);
+	biggest = ft_search_from(data, chunk, 1);
+	if (biggest == NULL)
+		exit (0);
+	if (ft_nmoves_to_a(data, biggest, 1)
+		<= ft_nmoves_to_a(data, biggest, -1))
+		ft_pa_node(data, biggest, &ft_rb);
+	else
+		ft_pa_node(data, biggest, &ft_rrb);
 }
 
 int	ft_pb_biggest(t_data *data, int chunk)
@@ -126,13 +113,39 @@ int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
 	return (i);
 }
 
+int	ft_nmoves_to_a(t_data *data, t_list *node, int dir)
+{
+	int		i;
+	t_list	*l;
+
+	i = 0;
+	if (dir == -1)
+		l = ft_lstlast(data->b->numbers);
+	else
+		l = data->b->numbers;
+	while (l != node)
+	{
+		if (dir == -1)
+			l = l->prev;
+		else
+			l = l->next;
+		i++;
+	}
+	return (i);
+}
+
 int	ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *))
 {
 	while (data->a->numbers != node)
-	{
-		//write(1, "c\t", 2);
 		ft(data);
-	}
 	ft_pb(data);
+	return (0);
+}
+
+int	ft_pa_node(t_data *data, t_list *node, int (*ft)(t_data *))
+{
+	while (data->b->numbers != node)
+		ft(data);
+	ft_pa(data);
 	return (0);
 }
