@@ -6,21 +6,21 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:24:04 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/29 17:50:50 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:34:56 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_search_from(t_data *data, int chunk, int dir)
+t_list	*ft_search_from(t_stack *stack, int chunk, int dir)
 {
 	t_list	*l;
 	t_list	*node;
 
 	if (dir == -1)
-		l = ft_lstlast(data->a->numbers);
+		l = ft_lstlast(stack->numbers);
 	else
-		l = data->a->numbers;
+		l = stack->numbers;
 	node = NULL;
 	while (l != NULL)
 	{
