@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/29 17:41:11 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:32:24 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 
 # define LOG		0
 # define DIRECTION	1
+
+# define BIGGEST	1
+# define SMALLEST	0
 
 typedef struct s_list
 {
@@ -52,11 +55,8 @@ int		ft_parse_arguments(t_data *data, int argc, char **argv);
 int		ft_do_logic(t_data *data);
 void	ft_print_stacks(t_data *data);
 void	ft_exit(int n);
-int		ft_issorted(t_data *data);
+int		ft_issorted(t_stack *stack);
 void	ft_free(t_data *data);
-void	ft_case_two(t_data *data);
-void	ft_case_three(t_data *data);
-void	ft_case_five(t_data *data);
 
 void	ft_pb_smallest(t_data *data);
 int		ft_pb_biggest(t_data *data, int chunk);
@@ -67,6 +67,8 @@ int		ft_nmoves_to_b(t_data *data, t_list *node, int dir);
 int		ft_nmoves_to_a(t_data *data, t_list *node, int dir);
 int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
 int		ft_pa_node(t_data *data, t_list *node, int (*ft)(t_data *));
+int		ft_do_logic_mini(t_data *data);
+t_list	*ft_find(t_stack *stack, int n);
 
 // checker functions:
 
@@ -98,6 +100,6 @@ size_t	ft_lst_position(t_list *list, t_list *node);
 t_list	*ft_lstnew_str(char *content_s);
 t_list	*ft_lstnew(int content);
 t_list	*ft_lstlast(t_list *lst);
-t_list	*ft_search_from(t_data *data, int chunk, int dir);
+t_list	*ft_search_from(t_stack *stack, int chunk, int dir);
 
 #endif /* push_swap.h */
