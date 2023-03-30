@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/30 12:56:02 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:14:06 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_print_stacks(t_data *data);
 void	ft_exit(int n);
 int		ft_issorted(t_stack *stack);
 void	ft_free(t_data *data);
+void	ft_case_three(t_data *data);
 
 void	ft_pb_smallest(t_data *data);
 int		ft_pb_biggest(t_data *data, int chunk);

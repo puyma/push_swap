@@ -6,13 +6,11 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:07:24 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/30 12:32:59 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 21:42:49 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	ft_case_three(t_data *data);
 
 int	ft_do_logic_mini(t_data *data)
 {
@@ -26,7 +24,9 @@ int	ft_do_logic_mini(t_data *data)
 	else if (data->size <= 5)
 	{
 		while (ft_lstsize(data->a->numbers) != 3)
+		{
 			ft_pb_smallest(data);
+		}
 		ft_case_three(data);
 		while (data->b->numbers != NULL)
 			ft_pa(data);
@@ -34,7 +34,7 @@ int	ft_do_logic_mini(t_data *data)
 	return (0);
 }
 
-static void	ft_case_three(t_data *data)
+void	ft_case_three(t_data *data)
 {
 	int	xyz[3];
 

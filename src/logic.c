@@ -6,31 +6,93 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/30 12:57:59 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:34:10 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	ft_do_chunk_method(t_data *data)
+{
+	int	chunk;
+
+	if (data->size <= 100)
+		data->chunk_size = data->size / 5;
+	else
+		data->chunk_size = data->size / 8;
+	//chunk = data->chunk_size;
+	t_list *smallest = ft_find(data->a, SMALLEST);
+	chunk = smallest->content + data->chunk_size;
+	while (data->a->numbers != NULL)
+	{
+		ft_pb_by_chunk(data, chunk);
+		chunk += data->chunk_size;
+		if (ft_lstsize(data->a->numbers) == 3)
+		{
+			ft_case_three(data);
+			break ;
+		}
+	}
+	while (data->b->numbers != NULL)
+	{
+		ft_push_2a_by_chunk(data, chunk);
+	}
+}
+
+void	ft_pb_by_chunk(t_data *data, int chunk)
+{
+	int		i;
+	t_list	*l;
+	t_list	*from_top;
+	t_list	*from_bottom;
+
+	l = data->a->numbers;
+	i = 0;
+	while (data->a->numbers != NULL && i++ <= data->chunk_size)
+	{
+		from_top = ft_search_from(data->a, chunk, 1);
+		from_bottom = ft_search_from(data->a, chunk, -1);
+		if (from_bottom == NULL)
+			break ;
+		if (ft_nmoves_to(data->a, from_top, 1)
+			<= ft_nmoves_to(data->a, from_bottom, -1))
+		{
+			while (data->a->numbers != from_top && from_top != NULL)
+				ft_ra(data);
+		}
+		else
+		{
+			while (data->a->numbers != from_bottom && from_bottom != NULL)
+				ft_rra(data);
+		}
+		ft_pb(data);
+		if (data->b->numbers->content >= chunk - (data->chunk_size / 2))
+			ft_rb(data);
+	}
+}
+
 void	ft_push_2a_by_chunk(t_data *data, int chunk)
 {
 	t_list	*biggest;
 
+	(void) chunk;
 	biggest = ft_find(data->b, BIGGEST);
 	if (ft_nmoves_to(data->b, biggest, 1)
 		<= ft_nmoves_to(data->b, biggest, -1))
 	{
 		while (data->b->numbers != biggest && biggest != NULL)
+		{
 			ft_rb(data);
-		ft_pa(data);
+		}
 	}
 	else
 	{
 		while (data->b->numbers != biggest && biggest != NULL)
+		{
 			ft_rrb(data);
-		ft_pa(data);
+		}
 	}
-	(void) chunk;
+	ft_pa(data);
 }
 
 t_list	*ft_find(t_stack *stack, int n)
@@ -48,31 +110,6 @@ t_list	*ft_find(t_stack *stack, int n)
 		l = l->next;
 	}
 	return (node);
-}
-
-void	ft_pb_smallest(t_data *data)
-{
-	t_list	*la;
-	t_list	*smallest;
-	int		position;
-
-	la = data->a->numbers;
-	smallest = la;
-	while (la != NULL)
-	{
-		if (smallest->content > la->content)
-			smallest = la;
-		la = la->next;
-	}
-	position = ft_lst_position(data->a->numbers, smallest);
-	while (data->a->numbers->content != smallest->content)
-	{
-		if ((data->size - position) >= data->size / 2)
-			ft_ra(data);
-		else
-			ft_rra(data);
-	}
-	ft_pb(data);
 }
 
 int	ft_pb_biggest(t_data *data, int chunk)
@@ -97,57 +134,21 @@ int	ft_pb_biggest(t_data *data, int chunk)
 	return (n_moves);
 }
 
-void	ft_pb_by_chunk(t_data *data, int chunk)
+void	ft_pb_smallest(t_data *data)
 {
-	int		i;
-	t_list	*l;
-	t_list	*from_top;
-	t_list	*from_bottom;
+	t_list	*smallest;
+	int		position;
 
-	l = data->a->numbers;
-	i = 0;
-	while (data->a->numbers != NULL && i++ <= chunk)
+	smallest = ft_find(data->a, SMALLEST);
+	position = ft_lst_position(data->a->numbers, smallest);
+	while (data->a->numbers->content != smallest->content)
 	{
-		from_top = ft_search_from(data->a, chunk, 1);
-		from_bottom = ft_search_from(data->a, chunk, -1);
-		if (from_bottom == NULL)
-			break ;
-		if (ft_nmoves_to(data->a, from_top, 1)
-			<= ft_nmoves_to(data->a, from_bottom, -1))
-		{
-			while (data->a->numbers != from_top && from_top != NULL)
-				ft_ra(data);
-		}
+		if ((data->size - position) >= data->size / 2)
+			ft_ra(data);
 		else
-		{
-			while (data->a->numbers != from_bottom && from_bottom != NULL)
-				ft_rra(data);
-		}
-		ft_pb(data);
+			ft_rra(data);
 	}
-}
-
-void	ft_do_chunk_method(t_data *data)
-{
-	int	chunk_size;
-	int	chunk;
-
-	if (data->size <= 100)
-		chunk_size = 20;
-	else
-		chunk_size = 44;
-	chunk = chunk_size;
-	while (data->a->numbers != NULL)
-	{
-		ft_pb_by_chunk(data, chunk);
-		chunk += chunk_size;
-	}
-	while (data->b->numbers != NULL)
-	{
-		ft_push_2a_by_chunk(data, chunk);
-		if (ft_pb_biggest(data, chunk) == -1)
-			chunk -= chunk_size;
-	}
+	ft_pb(data);
 }
 
 int	ft_nmoves_to(t_stack *stack, t_list *node, int dir)
