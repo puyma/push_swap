@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:26:09 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/29 17:50:48 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:55:28 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // need to add support for negative numbers
 // might add data->lowest and data->highest
 
+/*
 void	ft_do_chunk_method(t_data *data)
 {
 	int	chunk_size;
@@ -37,3 +38,4 @@ void	ft_do_chunk_method(t_data *data)
 			chunk -= chunk_size;
 	}
 }
+*/
