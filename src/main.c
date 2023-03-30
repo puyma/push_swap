@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/22 16:04:44 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:55:48 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ int	main(int argc, char **argv)
 		ft_free(data);
 		ft_exit(0);
 	}
-	ft_do_logic(data);
+	if (data->size == 1)
+		return (0);
+	else if (data->size <= 5)
+		ft_do_logic_mini(data);
+	else
+		ft_do_chunk_method(data);
 	ft_free(data);
 	return (0);
 }

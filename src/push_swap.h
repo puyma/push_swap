@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:04:06 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/30 12:32:24 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:56:02 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_list
 typedef struct s_stack
 {
 	t_list			*numbers;
+	char			id;
 }					t_stack;
 
 typedef struct s_data
@@ -52,7 +53,6 @@ typedef struct s_data
 
 t_data	*ft_init_data(void);
 int		ft_parse_arguments(t_data *data, int argc, char **argv);
-int		ft_do_logic(t_data *data);
 void	ft_print_stacks(t_data *data);
 void	ft_exit(int n);
 int		ft_issorted(t_stack *stack);
@@ -63,8 +63,7 @@ int		ft_pb_biggest(t_data *data, int chunk);
 void	ft_do_chunk_method(t_data *data);
 void	ft_pb_by_chunk(t_data *data, int chunk);
 void	ft_push_2a_by_chunk(t_data *data, int chunk);
-int		ft_nmoves_to_b(t_data *data, t_list *node, int dir);
-int		ft_nmoves_to_a(t_data *data, t_list *node, int dir);
+int		ft_nmoves_to(t_stack *stack, t_list *node, int dir);
 int		ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *));
 int		ft_pa_node(t_data *data, t_list *node, int (*ft)(t_data *));
 int		ft_do_logic_mini(t_data *data);

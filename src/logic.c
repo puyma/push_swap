@@ -6,39 +6,30 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/30 12:18:28 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:57:59 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_do_logic(t_data *data)
-{
-	int	chunk;
-	int	chunk_size;
-
-	chunk = 0;
-	chunk_size = 20;
-	if (data->size == 1)
-		return (0);
-	else if (data->size <= 5)
-		ft_do_logic_mini(data);
-	else
-		ft_do_chunk_method(data);
-	return (0);
-}
-
-// next to FIX---
 void	ft_push_2a_by_chunk(t_data *data, int chunk)
 {
 	t_list	*biggest;
 
 	biggest = ft_find(data->b, BIGGEST);
-	if (ft_nmoves_to_a(data, biggest, 1)
-		<= ft_nmoves_to_a(data, biggest, -1))
-		ft_pa_node(data, biggest, &ft_rb);
+	if (ft_nmoves_to(data->b, biggest, 1)
+		<= ft_nmoves_to(data->b, biggest, -1))
+	{
+		while (data->b->numbers != biggest && biggest != NULL)
+			ft_rb(data);
+		ft_pa(data);
+	}
 	else
-		ft_pa_node(data, biggest, &ft_rrb);
+	{
+		while (data->b->numbers != biggest && biggest != NULL)
+			ft_rrb(data);
+		ft_pa(data);
+	}
 	(void) chunk;
 }
 
@@ -115,18 +106,24 @@ void	ft_pb_by_chunk(t_data *data, int chunk)
 
 	l = data->a->numbers;
 	i = 0;
-	while (data->a->numbers != NULL && i <= chunk)
+	while (data->a->numbers != NULL && i++ <= chunk)
 	{
 		from_top = ft_search_from(data->a, chunk, 1);
 		from_bottom = ft_search_from(data->a, chunk, -1);
 		if (from_bottom == NULL)
 			break ;
-		if (ft_nmoves_to_b(data, from_top, 1)
-			<= ft_nmoves_to_b(data, from_bottom, -1))
-			ft_pb_node(data, from_top, &ft_ra);
+		if (ft_nmoves_to(data->a, from_top, 1)
+			<= ft_nmoves_to(data->a, from_bottom, -1))
+		{
+			while (data->a->numbers != from_top && from_top != NULL)
+				ft_ra(data);
+		}
 		else
-			ft_pb_node(data, from_bottom, &ft_rra);
-		i++;
+		{
+			while (data->a->numbers != from_bottom && from_bottom != NULL)
+				ft_rra(data);
+		}
+		ft_pb(data);
 	}
 }
 
@@ -153,18 +150,16 @@ void	ft_do_chunk_method(t_data *data)
 	}
 }
 
-int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
+int	ft_nmoves_to(t_stack *stack, t_list *node, int dir)
 {
 	int		i;
 	t_list	*l;
 
 	i = 0;
-	//if (node == NULL)
-	//	return (0);
 	if (dir == -1)
-		l = ft_lstlast(data->a->numbers);
+		l = ft_lstlast(stack->numbers);
 	else
-		l = data->a->numbers;
+		l = stack->numbers;
 	while (l != node)
 	{
 		if (dir == -1)
@@ -174,43 +169,4 @@ int	ft_nmoves_to_b(t_data *data, t_list *node, int dir)
 		i++;
 	}
 	return (i);
-}
-
-int	ft_nmoves_to_a(t_data *data, t_list *node, int dir)
-{
-	int		i;
-	t_list	*l;
-
-	i = 0;
-	//if (node == NULL)
-	//	return (0);
-	if (dir == -1)
-		l = ft_lstlast(data->b->numbers);
-	else
-		l = data->b->numbers;
-	while (l != node)
-	{
-		if (dir == -1)
-			l = l->prev;
-		else
-			l = l->next;
-		i++;
-	}
-	return (i);
-}
-
-int	ft_pb_node(t_data *data, t_list *node, int (*ft)(t_data *))
-{
-	while (data->a->numbers != node && node != NULL)
-		ft(data);
-	ft_pb(data);
-	return (0);
-}
-
-int	ft_pa_node(t_data *data, t_list *node, int (*ft)(t_data *))
-{
-	while (data->b->numbers != node && node != NULL)
-		ft(data);
-	ft_pa(data);
-	return (0);
 }
