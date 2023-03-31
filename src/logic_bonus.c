@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/23 15:28:07 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:49:51 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_check_logic(t_data *data, t_list *instructions)
 		do_instruction = NULL;
 		l = l->next;
 	}
-	if (ft_issorted(data) == 0 || data->b->numbers != NULL)
+	if (ft_issorted(data->a) == 0 || data->b->numbers != NULL)
 		return (0);
 	return (1);
 }
