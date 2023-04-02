@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:12:55 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 19:13:20 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:18:27 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,26 +71,4 @@ void	ft_push_2a_by_chunk(t_data *data)
 	if (data->a->numbers->next
 		&& data->a->numbers->next->index == data->a->numbers->index - 1)
 		swap(data->a);
-}
-
-int	ft_pb_biggest(t_data *data, int chunk)
-{
-	int		n_moves;
-	t_list	*lb;
-	t_list	*biggest;
-
-	n_moves = 0;
-	lb = data->b->numbers;
-	biggest = lb;
-	while (lb != NULL && biggest != NULL)
-	{
-		if (biggest->index < lb->index && lb->index > chunk)
-			biggest = lb;
-		lb = lb->next;
-	}
-	if (biggest != NULL && biggest->index < chunk)
-		return (-1);
-	if (biggest)
-		n_moves = ft_lst_position(data->b->numbers, biggest);
-	return (n_moves);
 }
