@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:05:09 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 11:07:23 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 16:12:37 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_print_stacks(t_data *data)
 	while (la != NULL || lb != NULL)
 	{
 		if (la)
-			ft_printf("%d", la->content);
+			ft_printf("%d (%d)", la->content, la->index);
 		write(1, "\t", 1);
 		if (lb)
 			ft_printf("%d", lb->content);

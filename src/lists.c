@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 10:50:22 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 10:57:03 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 14:26:32 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_list	*ft_search_from(t_stack *stack, int chunk, int dir)
 	node = NULL;
 	while (l != NULL)
 	{
-		if (l->content < chunk)
+		if (l->index < chunk)
 			return (l);
 		if (dir == -1)
 			l = l->prev;

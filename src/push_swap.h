@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:34:17 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 14:05:37 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 17:07:46 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		ft_do_chunk_method(t_data *data);
 void	ft_print_stacks(t_data *data);
 void	ft_free(t_data *data);
 void	ft_exit(int n);
+void	ft_set_index(t_stack *stack);
 
 void	ft_pb_by_chunk(t_data *data, int chunk);
 void	ft_push_2a_by_chunk(t_data *data, int chunk);

@@ -6,23 +6,43 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:12:55 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 14:09:29 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 17:08:15 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	ft_set_index(t_stack *stack)
+{
+	int		i;
+	t_list	*list;
+	t_list	*l;
+
+	list = stack->numbers;
+	while (list != NULL)
+	{
+		i = 0;
+		l = stack->numbers;
+		while (l != NULL)
+		{
+			if (list->content > l->content)
+				i++;
+			l = l->next;
+		}
+		list->index = i;
+		list = list->next;
+	}
+}
+
 int	ft_do_chunk_method(t_data *data)
 {
 	int		chunk;
-	t_list	*smallest;
 
 	if (data->size <= 100)
 		data->chunk_size = data->size / 5;
 	else
 		data->chunk_size = data->size / 8;
-	smallest = ft_find(data->a, SMALLEST);
-	chunk = smallest->content + data->chunk_size;
+	chunk = data->chunk_size;
 	while (data->a->numbers != NULL)
 	{
 		ft_pb_by_chunk(data, chunk);
@@ -65,7 +85,7 @@ void	ft_pb_by_chunk(t_data *data, int chunk)
 				rev_rotate(data->a);
 		}
 		push(data->a, data->b);
-		if (data->b->numbers->content >= chunk - (data->chunk_size / 2))
+		if (data->b->numbers->index >= chunk - (data->chunk_size / 2))
 			rotate(data->b);
 	}
 }
@@ -75,21 +95,17 @@ void	ft_push_2a_by_chunk(t_data *data, int chunk)
 	t_list	*biggest;
 
 	(void) chunk;
-	biggest = ft_find(data->b, BIGGEST);
+	biggest = ft_find(data, data->b, BIGGEST);
 	if (ft_nmoves_to(data->b, biggest, 1)
 		<= ft_nmoves_to(data->b, biggest, -1))
 	{
 		while (data->b->numbers != biggest && biggest != NULL)
-		{
 			rotate(data->b);
-		}
 	}
 	else
 	{
 		while (data->b->numbers != biggest && biggest != NULL)
-		{
 			rev_rotate(data->b);
-		}
 	}
 	push(data->b, data->a);
 }
@@ -103,8 +119,8 @@ t_list	*ft_find(t_stack *stack, int n)
 	node = l;
 	while (l != NULL)
 	{
-		if ((n == BIGGEST && l->content > node->content)
-			|| (n == SMALLEST && l->content < node->content))
+		if ((n == BIGGEST && l->index > node->index)
+			|| (n == SMALLEST && l->index < node->index))
 			node = l;
 		l = l->next;
 	}
@@ -122,11 +138,11 @@ int	ft_pb_biggest(t_data *data, int chunk)
 	biggest = lb;
 	while (lb != NULL && biggest != NULL)
 	{
-		if (biggest->content < lb->content && lb->content > chunk)
+		if (biggest->index < lb->index && lb->index > chunk)
 			biggest = lb;
 		lb = lb->next;
 	}
-	if (biggest != NULL && biggest->content < chunk)
+	if (biggest != NULL && biggest->index < chunk)
 		return (-1);
 	if (biggest)
 		n_moves = ft_lst_position(data->b->numbers, biggest);
