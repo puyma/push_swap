@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:12:55 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 17:08:15 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 18:11:41 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_push_2a_by_chunk(t_data *data, int chunk)
 	t_list	*biggest;
 
 	(void) chunk;
-	biggest = ft_find(data, data->b, BIGGEST);
+	biggest = ft_find(data->b, BIGGEST);
 	if (ft_nmoves_to(data->b, biggest, 1)
 		<= ft_nmoves_to(data->b, biggest, -1))
 	{
@@ -112,7 +112,7 @@ void	ft_push_2a_by_chunk(t_data *data, int chunk)
 
 t_list	*ft_find(t_stack *stack, int n)
 {
-	t_list 	*node;
+	t_list	*node;
 	t_list	*l;
 
 	l = stack->numbers;

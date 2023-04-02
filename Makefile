@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/04/02 12:01:45 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/04/02 18:12:44 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ STYLE		:=	\033[0;32m
 
 SRC_FILES	:=	src/arguments.c \
 				src/ft_issorted.c \
-				src/lists.c \
+				src/lists_a.c \
+				src/lists_b.c \
 				src/logic_chunks.c \
 				src/logic_mini.c \
 				src/main.c \
@@ -44,7 +45,8 @@ DEP_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .d, $(notdir $(basename $(SRC
 
 BONUS_FILES	:=	src/arguments.c \
 				src/ft_issorted.c \
-				src/lists.c \
+				src/lists_a.c \
+				src/lists_b.c \
 				src/logic_bonus.c \
 				src/main_bonus.c \
 				src/operation.c \

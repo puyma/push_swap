@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:12:27 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 17:04:00 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 17:47:36 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_pb_smallest(t_data *data)
 	t_list	*smallest;
 	int		position;
 
-	smallest = ft_find(data, data->a, SMALLEST);
+	smallest = ft_find(data->a, SMALLEST);
 	position = ft_lst_position(data->a->numbers, smallest);
 	while (data->a->numbers != smallest)
 	{
