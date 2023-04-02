@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:12:55 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 19:18:27 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:24:47 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_do_chunk_method(t_data *data)
 	if (data->size <= 100)
 		data->chunk_size = data->size / 5;
 	else
-		data->chunk_size = data->size / 11;
+		data->chunk_size = data->size / 8;
 	chunk = data->chunk_size;
 	while (data->a->numbers != NULL)
 	{
@@ -72,3 +72,11 @@ void	ft_push_2a_by_chunk(t_data *data)
 		&& data->a->numbers->next->index == data->a->numbers->index - 1)
 		swap(data->a);
 }
+
+//if -1
+//then push to a
+//swap a
+//if -2 
+//then push to a
+//rotate a
+//...

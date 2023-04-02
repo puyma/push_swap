@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:17:17 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 19:10:28 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:34:32 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	main(int argc, char **argv)
 		ft_exit(0);
 	}
 	ft_set_index(data->a);
+	if (ft_issorted(data->a) == 1)
+		data->size = 0;
 	if (data->size == 1)
 		return (0);
 	else if (data->size <= 5)
