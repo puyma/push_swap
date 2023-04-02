@@ -6,12 +6,13 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/23 17:25:50 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 20:21:47 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static t_data	*ft_init_data(void);
 static void		ft_delete_nl(void *ptr);
 static int		ft_read_instructions(t_list *instructions);
 static int		ft_check_instruction(char *instruction);
@@ -42,6 +43,26 @@ int	main(int argc, char **argv)
 	ft_free(data);
 	ft_lstclear(&instructions, &free);
 	return (0);
+}
+
+static t_data	*ft_init_data(void)
+{
+	t_data	*data;
+
+	data = ft_calloc(1, sizeof(t_data));
+	if (data == NULL)
+		return (NULL);
+	data->a = ft_calloc(1, sizeof(t_stack));
+	data->b = ft_calloc(1, sizeof(t_stack));
+	if (data->a == NULL || data->b == NULL)
+		return (NULL);
+	data->a->id = 'a';
+	data->b->id = 'b';
+	data->fd = STDOUT_FILENO;
+	data->size = 0;
+	data->n_moves = 0;
+	data->chunk_size = 0;
+	return (data);
 }
 
 static int	ft_read_instructions(t_list *instructions)

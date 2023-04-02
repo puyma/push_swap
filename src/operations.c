@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:50:20 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 14:07:52 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 20:21:26 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ int	push(t_stack *from, t_stack *to)
 
 	if (from->numbers == NULL)
 		return (0);
-	ft_printf("p%c\n", to->id);
+	write(STDOUT_FILENO, "p", 1);
+	write(STDOUT_FILENO, &to->id, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	first = from->numbers;
 	from->numbers = from->numbers->next;
 	ft_lstadd_front(&to->numbers, first);
@@ -36,7 +38,9 @@ int	swap(t_stack *stack)
 
 	if (stack->numbers == NULL || ft_lstsize(stack->numbers) == 1)
 		return (0);
-	ft_printf("s%c\n", stack->id);
+	write(STDOUT_FILENO, "s", 1);
+	write(STDOUT_FILENO, &stack->id, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	first = stack->numbers;
 	second = stack->numbers->next;
 	if (second == NULL)
@@ -57,7 +61,9 @@ int	rotate(t_stack *stack)
 		return (0);
 	if (stack->numbers == NULL)
 		return (0);
-	ft_printf("r%c\n", stack->id);
+	write(STDOUT_FILENO, "r", 1);
+	write(STDOUT_FILENO, &stack->id, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	stack->numbers = stack->numbers->next;
 	if (stack->numbers == NULL)
 		return (1);
@@ -72,7 +78,9 @@ int	rev_rotate(t_stack *stack)
 
 	if (stack->numbers == NULL || ft_lstsize(stack->numbers) == 1)
 		return (0);
-	ft_printf("rr%c\n", stack->id);
+	write(STDOUT_FILENO, "rr", 2);
+	write(STDOUT_FILENO, &stack->id, 1);
+	write(STDOUT_FILENO, "\n", 1);
 	last = ft_lstlast(stack->numbers);
 	if (last->prev != NULL)
 		last->prev->next = NULL;

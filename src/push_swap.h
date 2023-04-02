@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:34:17 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 19:19:57 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:47:07 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		ft_nmoves_to(t_stack *stack, t_list *node, int dir);
 int		ft_issorted(t_stack *stack);
 
 // checker functions:
+int		ft_check_logic(t_data *data, t_list *instructions);
 
 // Instructions: push, rotate,
 // reverse rotate and swap.

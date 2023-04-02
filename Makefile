@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/04/02 19:15:10 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/04/02 19:47:27 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ BONUS_FILES	:=	src/arguments.c \
 				src/lists_b.c \
 				src/logic_bonus.c \
 				src/main_bonus.c \
-				src/operation.c \
+				src/operations.c \
 				src/utils_a.c \
 				src/utils_b.c
 B_OBJ_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(notdir $(basename $(BONUS_FILES)))))
