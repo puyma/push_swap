@@ -6,7 +6,7 @@
 #    By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 15:22:15 by mpuig-ma          #+#    #+#              #
-#    Updated: 2023/04/02 18:12:44 by mpuig-ma         ###   ########.fr        #
+#    Updated: 2023/04/02 19:15:10 by mpuig-ma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,25 +32,25 @@ NOSTYLE		:=	\033[0m
 STYLE		:=	\033[0;32m
 
 SRC_FILES	:=	src/arguments.c \
-				src/ft_issorted.c \
 				src/lists_a.c \
 				src/lists_b.c \
 				src/logic_chunks.c \
 				src/logic_mini.c \
 				src/main.c \
 				src/operations.c \
-				src/utils.c
+				src/utils_a.c \
+				src/utils_b.c
 OBJ_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(notdir $(basename $(SRC_FILES)))))
 DEP_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .d, $(notdir $(basename $(SRC_FILES)))))
 
 BONUS_FILES	:=	src/arguments.c \
-				src/ft_issorted.c \
 				src/lists_a.c \
 				src/lists_b.c \
 				src/logic_bonus.c \
 				src/main_bonus.c \
 				src/operation.c \
-				src/utils.c
+				src/utils_a.c \
+				src/utils_b.c
 B_OBJ_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .o, $(notdir $(basename $(BONUS_FILES)))))
 B_DEP_FILES	=	$(addprefix $(BUILD_DIR)/, $(addsuffix .d, $(notdir $(basename $(BONUS_FILES)))))
 

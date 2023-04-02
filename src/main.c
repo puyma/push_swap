@@ -6,13 +6,14 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:17:17 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 17:06:39 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/02 19:10:28 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 static t_data	*ft_init_data(void);
+static void		ft_set_index(t_stack *stack);
 
 int	main(int argc, char **argv)
 {
@@ -57,4 +58,26 @@ static t_data	*ft_init_data(void)
 	data->n_moves = 0;
 	data->chunk_size = 0;
 	return (data);
+}
+
+static void	ft_set_index(t_stack *stack)
+{
+	int		i;
+	t_list	*list;
+	t_list	*l;
+
+	list = stack->numbers;
+	while (list != NULL)
+	{
+		i = 0;
+		l = stack->numbers;
+		while (l != NULL)
+		{
+			if (list->content > l->content)
+				i++;
+			l = l->next;
+		}
+		list->index = i;
+		list = list->next;
+	}
 }
