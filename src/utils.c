@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 18:53:27 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/23 15:08:58 by mpuig-ma         ###   ########.fr       */
+/*   Created: 2023/04/02 11:05:09 by mpuig-ma          #+#    #+#             */
+/*   Updated: 2023/04/02 11:07:23 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,36 @@
 
 static t_list	*ft_iter_direction(t_list *l);
 static t_list	*ft_start_node(t_list *l);
+
+void	ft_exit(int n)
+{
+	ft_putstr_fd("Error\n", STDERR_FILENO);
+	exit (n);
+}
+
+void	ft_free(t_data *data)
+{
+	char	**temp;
+
+	temp = NULL;
+	if (data)
+	{
+		ft_lstclear(&data->a->numbers, &free);
+		if (data->a)
+			free(data->a);
+		ft_lstclear(&data->b->numbers, &free);
+		if (data->b)
+			free(data->b);
+		temp = data->split;
+		while (temp && *(temp) != NULL)
+		{
+			free(*temp);
+			temp++;
+		}
+		free(data->split);
+		free(data);
+	}
+}
 
 void	ft_print_stacks(t_data *data)
 {

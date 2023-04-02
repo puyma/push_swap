@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   logic.c                                            :+:      :+:    :+:   */
+/*   logic_chunks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/30 22:34:10 by mpuig-ma         ###   ########.fr       */
+/*   Created: 2023/04/02 11:12:55 by mpuig-ma          #+#    #+#             */
+/*   Updated: 2023/04/02 14:09:29 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_do_chunk_method(t_data *data)
+int	ft_do_chunk_method(t_data *data)
 {
-	int	chunk;
+	int		chunk;
+	t_list	*smallest;
 
 	if (data->size <= 100)
 		data->chunk_size = data->size / 5;
 	else
 		data->chunk_size = data->size / 8;
-	//chunk = data->chunk_size;
-	t_list *smallest = ft_find(data->a, SMALLEST);
+	smallest = ft_find(data->a, SMALLEST);
 	chunk = smallest->content + data->chunk_size;
 	while (data->a->numbers != NULL)
 	{
@@ -29,14 +29,13 @@ void	ft_do_chunk_method(t_data *data)
 		chunk += data->chunk_size;
 		if (ft_lstsize(data->a->numbers) == 3)
 		{
-			ft_case_three(data);
+			ft_case_three(data->a);
 			break ;
 		}
 	}
 	while (data->b->numbers != NULL)
-	{
 		ft_push_2a_by_chunk(data, chunk);
-	}
+	return (0);
 }
 
 void	ft_pb_by_chunk(t_data *data, int chunk)
@@ -58,16 +57,16 @@ void	ft_pb_by_chunk(t_data *data, int chunk)
 			<= ft_nmoves_to(data->a, from_bottom, -1))
 		{
 			while (data->a->numbers != from_top && from_top != NULL)
-				ft_ra(data);
+				rotate(data->a);
 		}
 		else
 		{
 			while (data->a->numbers != from_bottom && from_bottom != NULL)
-				ft_rra(data);
+				rev_rotate(data->a);
 		}
-		ft_pb(data);
+		push(data->a, data->b);
 		if (data->b->numbers->content >= chunk - (data->chunk_size / 2))
-			ft_rb(data);
+			rotate(data->b);
 	}
 }
 
@@ -82,17 +81,17 @@ void	ft_push_2a_by_chunk(t_data *data, int chunk)
 	{
 		while (data->b->numbers != biggest && biggest != NULL)
 		{
-			ft_rb(data);
+			rotate(data->b);
 		}
 	}
 	else
 	{
 		while (data->b->numbers != biggest && biggest != NULL)
 		{
-			ft_rrb(data);
+			rev_rotate(data->b);
 		}
 	}
-	ft_pa(data);
+	push(data->b, data->a);
 }
 
 t_list	*ft_find(t_stack *stack, int n)
@@ -132,23 +131,6 @@ int	ft_pb_biggest(t_data *data, int chunk)
 	if (biggest)
 		n_moves = ft_lst_position(data->b->numbers, biggest);
 	return (n_moves);
-}
-
-void	ft_pb_smallest(t_data *data)
-{
-	t_list	*smallest;
-	int		position;
-
-	smallest = ft_find(data->a, SMALLEST);
-	position = ft_lst_position(data->a->numbers, smallest);
-	while (data->a->numbers->content != smallest->content)
-	{
-		if ((data->size - position) >= data->size / 2)
-			ft_ra(data);
-		else
-			ft_rra(data);
-	}
-	ft_pb(data);
 }
 
 int	ft_nmoves_to(t_stack *stack, t_list *node, int dir)

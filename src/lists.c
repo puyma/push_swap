@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 18:53:32 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/21 15:21:53 by mpuig-ma         ###   ########.fr       */
+/*   Created: 2023/04/02 10:50:22 by mpuig-ma          #+#    #+#             */
+/*   Updated: 2023/04/02 10:57:03 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,80 @@ size_t	ft_lstsize(t_list *lst)
 		lst = lst->next;
 	}
 	return (i);
+}
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	t_list	*first;
+
+	first = *lst;
+	if (*lst != NULL)
+		first->prev = new;
+	new->prev = NULL;
+	new->next = first;
+	*lst = new;
+}
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*last;
+
+	last = ft_lstlast(*lst);
+	if (last == NULL)
+	{
+		*lst = new;
+		new->prev = NULL;
+		new->next = NULL;
+	}
+	else
+	{
+		last->next = new;
+		new->prev = last;
+		new->next = NULL;
+	}
+}
+
+t_list	*ft_search_from(t_stack *stack, int chunk, int dir)
+{
+	t_list	*l;
+	t_list	*node;
+
+	if (dir == -1)
+		l = ft_lstlast(stack->numbers);
+	else
+		l = stack->numbers;
+	node = NULL;
+	while (l != NULL)
+	{
+		if (l->content < chunk)
+			return (l);
+		if (dir == -1)
+			l = l->prev;
+		else
+			l = l->next;
+	}
+	return (node);
+}
+
+void	ft_lstiter_s(t_list *lst, void (*f)(void *))
+{
+	while (lst != NULL)
+	{
+		f(lst->content_s);
+		lst = lst->next;
+	}
+}
+
+void	ft_lstclear(t_list **lst, void (*del)(void *))
+{
+	t_list	*temp;
+
+	while (*lst != NULL)
+	{
+		del((*lst)->content_s);
+		temp = (*lst)->next;
+		free(*lst);
+		*lst = temp;
+	}
+	lst = NULL;
 }
