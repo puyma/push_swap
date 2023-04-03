@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 14:34:17 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 19:47:07 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:34:59 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int		ft_check_logic(t_data *data, t_list *instructions);
 
 // Instructions: push, rotate,
 // reverse rotate and swap.
-int		push(t_stack *from, t_stack *to);
-int		swap(t_stack *stack);
-int		rotate(t_stack *stack);
-int		rev_rotate(t_stack *stack);
+int		push(t_stack *from, t_stack *to, int c);
+int		swap(t_stack *stack, int c);
+int		rotate(t_stack *stack, int c);
+int		rev_rotate(t_stack *stack, int c);
 
 // List functions:
 t_list	*ft_lstnew(int content);

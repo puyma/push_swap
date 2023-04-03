@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:11:28 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 19:14:52 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:03:43 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	ft_bring_top(t_stack *stack, t_list *node, t_list *bottom)
 		<= ft_nmoves_to(stack, bottom, -1))
 	{
 		while (stack->numbers != node && node != NULL)
-			rotate(stack);
+			rotate(stack, stack->id);
 	}
 	else
 	{
 		while (stack->numbers != bottom && bottom != NULL)
-			rev_rotate(stack);
+			rev_rotate(stack, stack->id);
 	}
 }
 

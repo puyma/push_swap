@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 11:12:55 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/02 19:24:47 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/03 13:02:52 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	ft_pb_by_chunk(t_data *data, int chunk)
 		if (from_bottom == NULL)
 			break ;
 		ft_bring_top(data->a, from_top, from_bottom);
-		push(data->a, data->b);
+		push(data->a, data->b, data->b->id);
 		if (data->b->numbers->index >= chunk - (data->chunk_size / 2))
-			rotate(data->b);
+			rotate(data->b, data->b->id);
 	}
 }
 
@@ -64,13 +64,13 @@ void	ft_push_2a_by_chunk(t_data *data)
 
 	biggest = ft_find(data->b, BIGGEST);
 	if (data->b->numbers->index == biggest->index - 1)
-		push(data->b, data->a);
+		push(data->b, data->a, data->a->id);
 	biggest = ft_find(data->b, BIGGEST);
 	ft_bring_top(data->b, biggest, NULL);
-	push(data->b, data->a);
+	push(data->b, data->a, data->a->id);
 	if (data->a->numbers->next
 		&& data->a->numbers->next->index == data->a->numbers->index - 1)
-		swap(data->a);
+		swap(data->a, data->a->id);
 }
 
 //if -1
