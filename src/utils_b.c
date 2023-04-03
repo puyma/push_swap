@@ -6,7 +6,7 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:11:28 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/03 13:03:43 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:36:49 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_bring_top(t_stack *stack, t_list *node, t_list *bottom)
 {
 	if (bottom == NULL)
 		bottom = node;
-	if (ft_nmoves_to(stack, node, 1)
-		<= ft_nmoves_to(stack, bottom, -1))
+	if (ft_nmoves_to(stack, node, FORWARD)
+		<= ft_nmoves_to(stack, bottom, BACKWARD))
 	{
 		while (stack->numbers != node && node != NULL)
 			rotate(stack, stack->id);
@@ -52,13 +52,13 @@ int	ft_nmoves_to(t_stack *stack, t_list *node, int dir)
 	t_list	*l;
 
 	i = 0;
-	if (dir == -1)
+	if (dir == BACKWARD)
 		l = ft_lstlast(stack->numbers);
 	else
 		l = stack->numbers;
 	while (l != node)
 	{
-		if (dir == -1)
+		if (dir == BACKWARD)
 			l = l->prev;
 		else
 			l = l->next;
