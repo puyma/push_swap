@@ -6,28 +6,11 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 19:11:28 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/04/03 17:36:49 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:55:09 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_bring_top(t_stack *stack, t_list *node, t_list *bottom)
-{
-	if (bottom == NULL)
-		bottom = node;
-	if (ft_nmoves_to(stack, node, FORWARD)
-		<= ft_nmoves_to(stack, bottom, BACKWARD))
-	{
-		while (stack->numbers != node && node != NULL)
-			rotate(stack, stack->id);
-	}
-	else
-	{
-		while (stack->numbers != bottom && bottom != NULL)
-			rev_rotate(stack, stack->id);
-	}
-}
 
 t_list	*ft_find(t_stack *stack, int n)
 {
@@ -44,6 +27,20 @@ t_list	*ft_find(t_stack *stack, int n)
 		l = l->next;
 	}
 	return (node);
+}
+
+t_list	*ft_find_by_index(t_stack *stack, int index)
+{
+	t_list	*l;
+
+	l = stack->numbers;
+	while (l != NULL)
+	{
+		if (l->index == index)
+			return (l);
+		l = l->next;
+	}
+	return (NULL);
 }
 
 int	ft_nmoves_to(t_stack *stack, t_list *node, int dir)
