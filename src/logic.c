@@ -42,11 +42,9 @@ void	ft_do_chunk_method(t_data *data)
 void	ft_pb_by_chunk(t_data *data, int chunk)
 {
 	int		i;
-	t_list	*l;
 	t_list	*from_top;
 	t_list	*from_bottom;
 
-	l = data->a->numbers;
 	i = 0;
 	while (data->a->numbers != NULL && i++ <= data->chunk_size)
 	{
