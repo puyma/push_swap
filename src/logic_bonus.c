@@ -6,28 +6,23 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 17:29:39 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/30 22:49:51 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/03 17:49:59 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	(*ft_set_func(char *str))(t_data *data);
+static void	ft_do_instruction(t_data *data, char *str);
+static void	ft_s_patch(int (*func)(t_stack *stack, int c), t_data *data);
 
 int	ft_check_logic(t_data *data, t_list *instructions)
 {
 	t_list	*l;
-	int		(*do_instruction)(t_data *);
 
 	l = instructions;
-	do_instruction = NULL;
-	data->fd = -1;
 	while (l != NULL)
 	{
-		do_instruction = ft_set_func(l->content_s);
-		if (do_instruction != NULL)
-			do_instruction(data);
-		do_instruction = NULL;
+		ft_do_instruction(data, l->content_s);
 		l = l->next;
 	}
 	if (ft_issorted(data->a) == 0 || data->b->numbers != NULL)
@@ -35,29 +30,34 @@ int	ft_check_logic(t_data *data, t_list *instructions)
 	return (1);
 }
 
-static int	(*ft_set_func(char *str))(t_data *data)
+static void	ft_do_instruction(t_data *data, char *str)
 {
 	if (ft_strncmp(str, "pa", 2) == 0)
-		return (&ft_pa);
+		push(data->b, data->a, 0);
 	else if (ft_strncmp(str, "pb", 2) == 0)
-		return (&ft_pb);
+		push(data->a, data->b, 0);
 	else if (ft_strncmp(str, "sa", 2) == 0)
-		return (&ft_sa);
+		swap(data->a, 0);
 	else if (ft_strncmp(str, "sb", 2) == 0)
-		return (&ft_sb);
+		swap(data->b, 0);
 	else if (ft_strncmp(str, "ss", 2) == 0)
-		return (&ft_ss);
+		ft_s_patch(&swap, data);
 	else if (ft_strncmp(str, "rra", 3) == 0)
-		return (&ft_rra);
+		rev_rotate(data->a, 0);
 	else if (ft_strncmp(str, "rrb", 3) == 0)
-		return (&ft_rrb);
+		rev_rotate(data->b, 0);
 	else if (ft_strncmp(str, "rrr", 3) == 0)
-		return (&ft_rrr);
+		ft_s_patch(&rev_rotate, data);
 	else if (ft_strncmp(str, "ra", 2) == 0)
-		return (&ft_ra);
+		rotate(data->a, 0);
 	else if (ft_strncmp(str, "rb", 2) == 0)
-		return (&ft_rb);
+		rotate(data->b, 0);
 	else if (ft_strncmp(str, "rr", 2) == 0)
-		return (&ft_rr);
-	return (NULL);
+		ft_s_patch(&rotate, data);
+}
+
+static void	ft_s_patch(int (*func)(t_stack *stack, int c), t_data *data)
+{
+	func(data->a, 0);
+	func(data->b, 0);
 }

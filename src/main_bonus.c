@@ -6,14 +6,15 @@
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:56:31 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/23 17:25:50 by mpuig-ma         ###   ########.fr       */
+/*   Updated: 2023/04/03 12:31:01 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static t_data	*ft_init_data(void);
 static void		ft_delete_nl(void *ptr);
-static int		ft_read_instructions(t_list *instructions);
+static int		ft_read_instructions(t_list **instructions);
 static int		ft_check_instruction(char *instruction);
 
 int	main(int argc, char **argv)
@@ -30,7 +31,7 @@ int	main(int argc, char **argv)
 		ft_free(data);
 		ft_exit(0);
 	}
-	if (ft_read_instructions(instructions) == 0)
+	if (ft_read_instructions(&instructions) == 0)
 	{
 		ft_free(data);
 		ft_exit(0);
@@ -44,7 +45,27 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-static int	ft_read_instructions(t_list *instructions)
+static t_data	*ft_init_data(void)
+{
+	t_data	*data;
+
+	data = ft_calloc(1, sizeof(t_data));
+	if (data == NULL)
+		return (NULL);
+	data->a = ft_calloc(1, sizeof(t_stack));
+	data->b = ft_calloc(1, sizeof(t_stack));
+	if (data->a == NULL || data->b == NULL)
+		return (NULL);
+	data->a->id = 'a';
+	data->b->id = 'b';
+	data->fd = STDOUT_FILENO;
+	data->size = 0;
+	data->n_moves = 0;
+	data->chunk_size = 0;
+	return (data);
+}
+
+static int	ft_read_instructions(t_list **instructions)
 {
 	t_list	*list;
 	char	*line;
@@ -61,10 +82,8 @@ static int	ft_read_instructions(t_list *instructions)
 		ft_lstadd_back(&list, ft_lstnew_str(line));
 		line = get_next_line(STDIN_FILENO);
 	}
-	if (list == NULL)
-		return (0);
 	ft_lstiter_s(list, &ft_delete_nl);
-	instructions = list;
+	*instructions = list;
 	return (1);
 }
 

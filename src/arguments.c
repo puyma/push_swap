@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mpuig-ma <mpuig-ma@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 15:52:36 by mpuig-ma          #+#    #+#             */
-/*   Updated: 2023/03/29 17:00:13 by mpuig-ma         ###   ########.fr       */
+/*   Created: 2023/04/02 10:52:24 by mpuig-ma          #+#    #+#             */
+/*   Updated: 2023/04/02 10:59:44 by mpuig-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,23 +100,24 @@ static int	ft_islimit(char *s)
 {
 	const size_t	max = ft_count_digits(INT_MAX, 10);
 	const size_t	min = ft_count_digits(INT_MIN, 10) + 1;
+	char			*itoa_int_min;
+	char			*itoa_int_max;
 	size_t			len;
 
+	itoa_int_min = ft_itoa(INT_MIN);
+	itoa_int_max = ft_itoa(INT_MAX);
 	len = ft_strlen(s);
-	if (*s == '-' && len > min)
-		return (0);
-	if (*s == '+' && len > (max + 1))
-		return (0);
-	if (*s != '+' && *s != '-' && len > max)
-		return (0);
-	if (*s == '-' && len == min \
-		&& ft_strncmp(s, ft_itoa(INT_MIN), min) > 0)
-		return (0);
-	if (*s == '+' && len == max + 1 \
-		&& ft_strncmp(s + 1, ft_itoa(INT_MAX), max) > 0)
-		return (0);
-	if (*s != '+' && *s != '-' && len == max \
-		&& ft_strncmp(s, ft_itoa(INT_MAX), max) > 0)
-		return (0);
+	if ((*s == '-' && len > min)
+		|| (*s == '+' && len > (max + 1))
+		|| (*s != '+' && *s != '-' && len > max))
+		ft_exit(2);
+	if ((*s == '-' && len == min && ft_strncmp(s, itoa_int_min, min) > 0)
+		|| (*s == '+' && len == max + 1
+			&& ft_strncmp(s + 1, itoa_int_max, max) > 0)
+		|| (*s != '+' && *s != '-'
+			&& len == max && ft_strncmp(s, itoa_int_max, max) > 0))
+		ft_exit(2);
+	free(itoa_int_min);
+	free(itoa_int_max);
 	return (1);
 }
