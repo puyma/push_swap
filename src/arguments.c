@@ -100,23 +100,21 @@ static int	ft_islimit(char *s)
 {
 	const size_t	max = ft_count_digits(INT_MAX, 10);
 	const size_t	min = ft_count_digits(INT_MIN, 10) + 1;
+	char		*itoa_int_min = ft_itoa(INT_MIN);
+	char		*itoa_int_max = ft_itoa(INT_MAX);
 	size_t			len;
 
 	len = ft_strlen(s);
-	if (*s == '-' && len > min)
+	if ((*s == '-' && len > min) || (*s == '+' && len > (max + 1)) || (*s != '+' && *s != '-' && len > max))
+	{
+		free(itoa_int_min); free(itoa_int_max);
 		return (0);
-	if (*s == '+' && len > (max + 1))
+	}
+	if ((*s == '-' && len == min && ft_strncmp(s, itoa_int_min, min) > 0) || (*s == '+' && len == max + 1 && ft_strncmp(s + 1, itoa_int_max, max) > 0) || (*s != '+' && *s != '-' && len == max && ft_strncmp(s, itoa_int_max, max) > 0))
+	{
+		free(itoa_int_min); free(itoa_int_max);
 		return (0);
-	if (*s != '+' && *s != '-' && len > max)
-		return (0);
-	if (*s == '-' && len == min \
-		&& ft_strncmp(s, ft_itoa(INT_MIN), min) > 0)
-		return (0);
-	if (*s == '+' && len == max + 1 \
-		&& ft_strncmp(s + 1, ft_itoa(INT_MAX), max) > 0)
-		return (0);
-	if (*s != '+' && *s != '-' && len == max \
-		&& ft_strncmp(s, ft_itoa(INT_MAX), max) > 0)
-		return (0);
+	}
+	free(itoa_int_min); free(itoa_int_max);
 	return (1);
 }

@@ -76,7 +76,7 @@ int	rev_rotate(t_stack *stack, int c)
 	if (stack->numbers == NULL || ft_lstsize(stack->numbers) == 1)
 		return (0);
 	if (c != 0)
-		ft_printf("rr%c\n");
+		ft_printf("rr%c\n", c);
 	last = ft_lstlast(stack->numbers);
 	if (last->prev != NULL)
 		last->prev->next = NULL;

@@ -64,7 +64,7 @@ void	ft_push_2b_by_chunk(t_data *data, int chunk);
 void	ft_push_back_2a(t_data *data);
 void	ft_bring_top(t_stack *stack, t_list *node, t_list *bottom);
 void	ft_bring_top_by_chunk(t_stack *stack, int chunk);
-void	ft_bring_top_biggest(t_stack *stack);
+void	ft_bring_top_biggest(t_stack *stack, t_stack *stack_a);
 t_list	*ft_find(t_stack *stack, int n);
 t_list	*ft_find_by_index(t_stack *stack, int index);
 int		ft_nmoves_to(t_stack *stack, t_list *node, int dir);
